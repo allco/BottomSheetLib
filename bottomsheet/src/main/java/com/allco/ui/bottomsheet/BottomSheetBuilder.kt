@@ -1,46 +1,86 @@
 package com.allco.ui.bottomsheet
 
 import android.app.Activity
+import android.content.Context
+import android.content.DialogInterface
 import android.graphics.drawable.Drawable
-import android.support.annotation.ColorInt
+import android.support.annotation.ColorRes
 import android.support.annotation.DrawableRes
+import com.allco.ui.recyclerView.ObserverAdapter
 
 
 fun Activity.bottomSheet(init: BottomSheetSettings.() -> Unit): BottomSheetBuilder {
-    return BottomSheetBuilder(BottomSheetSettings().apply { init() })
+    return BottomSheetBuilder(this, BottomSheetSettings().apply { init() })
 }
 
 class BottomSheetSettings {
-    interface Item
 
-    data class DividerItemBuilder(
-            var leftOffset: Int? = Int.MIN_VALUE,
-            var rightOffset: Int? = Int.MIN_VALUE) : Item
+    data class TitleItem(var title: String? = null) : ObserverAdapter.Item {
+        override val layout = R.layout.bottom_sheet_list_item_title
+    }
 
-    data class ItemBuilder(var title: String? = null,
-                           @DrawableRes var iconRes: Int = Int.MIN_VALUE,
-                           @ColorInt var iconTint: Int = Int.MIN_VALUE,
-                           var iconDrawable: Drawable? = null,
-                           var iconUrl: String? = null,
-                           var clickable: Boolean = false,
-                           var onClicked: (() -> Boolean)? = null) : Item
+    data class DividerItem(
+            var leftOffset: Int? = null,
+            var rightOffset: Int? = null) : ObserverAdapter.Item {
+        override val layout = R.layout.bottom_sheet_list_item_divider
+    }
 
-    private var listItems = mutableListOf<Item>()
+    class ClickableItem : ObserverAdapter.Item {
+
+        var title: String? = null
+        var onClicked: (() -> Boolean)? = null
+
+        @ColorRes
+        var iconResTintColor: Int? = null
+        @DrawableRes
+        var iconRes: Int? = null
+            set(value) {
+                field = value
+                iconUrl = null
+                iconDrawable = null
+            }
+
+        var iconDrawable: Drawable? = null
+            set(value) {
+                field = value
+                iconUrl = null
+                iconRes = null
+                iconResTintColor = null
+            }
+        var iconUrl: String? = null
+            set(value) {
+                field = value
+                iconRes = null
+                iconResTintColor = null
+                iconDrawable = null
+            }
+
+        override val layout = R.layout.bottom_sheet_list_item
+    }
+
+    val listItems = ObserverAdapter.ItemList()
 
     var onCanceled: (() -> Unit)? = null
 
-    fun item(action: ItemBuilder.() -> Unit) {
-        listItems.add(ItemBuilder().apply(action))
+    fun title(action: TitleItem.() -> Unit) {
+        listItems.add(TitleItem().apply(action))
     }
 
-    fun divider(action: DividerItemBuilder.() -> Unit) {
-        listItems.add(DividerItemBuilder().apply(action))
+    fun clickableItem(action: ClickableItem.() -> Unit) {
+        listItems.add(ClickableItem().apply(action))
+    }
+
+    fun divider(action: DividerItem.() -> Unit) {
+        listItems.add(DividerItem().apply(action))
     }
 }
 
-class BottomSheetBuilder(var settings: BottomSheetSettings) {
-    fun show() {
-
+class BottomSheetBuilder(private val context: Context, private var settings: BottomSheetSettings) {
+    fun show(): DialogInterface {
+        return BottomSheetDialog(context).apply {
+            init(settings)
+            show()
+        }
     }
 }
 

@@ -47,8 +47,10 @@ dependencies {
 
     kapt 'com.google.dagger:dagger-compiler:2.13'
     implementation 'com.google.dagger:dagger:2.13'
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
+    implementation 'com.android.support:recyclerview-v7:27.0.2'
+
+    compileOnly 'com.squareup.picasso:picasso:2.5.2'
 }
 repositories {
     mavenCentral()
