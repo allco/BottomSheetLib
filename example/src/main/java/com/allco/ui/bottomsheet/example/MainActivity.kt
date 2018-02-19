@@ -1,7 +1,7 @@
 package com.allco.ui.bottomsheet.example
 
-import android.graphics.Color
 import android.os.Bundle
+import android.support.v4.content.res.ResourcesCompat
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import com.allco.ui.bottomsheet.bottomSheet
@@ -16,9 +16,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         bottomSheet {
-            item {
+            title {
                 title = "Title 1"
-                clickable = false
             }
 
             divider {
@@ -26,22 +25,35 @@ class MainActivity : AppCompatActivity() {
                 rightOffset = resources.getDimensionPixelOffset(R.dimen.dividerRightOffset)
             }
 
-            item {
+            clickableItem {
                 title = "Magenta car. Tinted vector icon."
                 iconRes = R.drawable.ic_directions_car_black_24dp
-                iconTint = Color.MAGENTA
+                iconResTintColor = R.color.colorAccent
                 onClicked = {
                     Log.d(TAG, "Clicked " + title)
                     false
                 }
             }
 
-            item {
+            divider {}
+
+            clickableItem {
                 title = "Photo camera. Drawable."
-                iconDrawable = resources.getDrawable(R.drawable.photo_icon, theme)
+                iconDrawable = ResourcesCompat.getDrawable(resources, R.drawable.photo_icon, null)
                 onClicked = {
                     Log.d(TAG, "Clicked " + title)
                     false
+                }
+            }
+
+            clickableItem {
+                title = "Item without icon"
+            }
+
+            custom {
+                layoutRes = R.layout.custom_layout
+                onBind = { binding ->
+
                 }
             }
 

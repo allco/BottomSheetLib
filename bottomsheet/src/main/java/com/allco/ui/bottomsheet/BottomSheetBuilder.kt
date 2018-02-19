@@ -3,10 +3,11 @@ package com.allco.ui.bottomsheet
 import android.app.Activity
 import android.content.Context
 import android.content.DialogInterface
+import android.databinding.ViewDataBinding
 import android.graphics.drawable.Drawable
 import android.support.annotation.ColorRes
 import android.support.annotation.DrawableRes
-import com.allco.ui.recyclerView.ObserverAdapter
+import com.allco.ui.recyclerView.ObserverBasedAdapter
 
 
 fun Activity.bottomSheet(init: BottomSheetSettings.() -> Unit): BottomSheetBuilder {
@@ -15,50 +16,43 @@ fun Activity.bottomSheet(init: BottomSheetSettings.() -> Unit): BottomSheetBuild
 
 class BottomSheetSettings {
 
-    data class TitleItem(var title: String? = null) : ObserverAdapter.Item {
+    data class TitleItem(var title: String? = null) : ObserverBasedAdapter.Item {
         override val layout = R.layout.bottom_sheet_list_item_title
     }
 
     data class DividerItem(
             var leftOffset: Int? = null,
-            var rightOffset: Int? = null) : ObserverAdapter.Item {
+            var rightOffset: Int? = null) : ObserverBasedAdapter.Item {
         override val layout = R.layout.bottom_sheet_list_item_divider
     }
 
-    class ClickableItem : ObserverAdapter.Item {
+    class CustomItem : ObserverBasedAdapter.Item {
+        var layoutRes: Int? = null
+        var onBind: ((binding: ViewDataBinding) -> Unit)? = null
 
+        override val layout: Int
+            get() = layoutRes
+                    ?: throw IllegalStateException("layout is required for 'custom{}' item")
+
+        override val binder: ((binding: ViewDataBinding) -> Unit)
+            get() = onBind ?: super.binder
+
+    }
+
+    class ClickableItem : ObserverBasedAdapter.Item {
         var title: String? = null
-        var onClicked: (() -> Boolean)? = null
-
+        var iconUrl: String? = null
+        var iconDrawable: Drawable? = null
         @ColorRes
         var iconResTintColor: Int? = null
         @DrawableRes
         var iconRes: Int? = null
-            set(value) {
-                field = value
-                iconUrl = null
-                iconDrawable = null
-            }
-
-        var iconDrawable: Drawable? = null
-            set(value) {
-                field = value
-                iconUrl = null
-                iconRes = null
-                iconResTintColor = null
-            }
-        var iconUrl: String? = null
-            set(value) {
-                field = value
-                iconRes = null
-                iconResTintColor = null
-                iconDrawable = null
-            }
+        var onClicked: (() -> Boolean)? = null
 
         override val layout = R.layout.bottom_sheet_list_item
     }
 
-    val listItems = ObserverAdapter.ItemList()
+    val listItems = ObserverBasedAdapter.ItemList()
 
     var onCanceled: (() -> Unit)? = null
 
@@ -72,6 +66,10 @@ class BottomSheetSettings {
 
     fun divider(action: DividerItem.() -> Unit) {
         listItems.add(DividerItem().apply(action))
+    }
+
+    fun custom(action: CustomItem.() -> Unit) {
+        listItems.add(CustomItem().apply(action))
     }
 }
 
