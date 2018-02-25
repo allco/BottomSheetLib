@@ -13,8 +13,19 @@ import android.support.v4.content.ContextCompat
 import android.support.v4.graphics.drawable.DrawableCompat
 import android.text.TextUtils.isEmpty
 import android.util.Log
+import android.view.View
+import android.view.ViewGroup
 import android.widget.TextView
 import com.squareup.picasso.Picasso
+
+@BindingAdapter(value = ["marginLeft", "marginRight"], requireAll = false)
+fun setParentLayoutLeftMargins(view: View, leftMargin: Int, rightMargin: Int) {
+    (view.layoutParams as? ViewGroup.MarginLayoutParams)?.also { lp ->
+        leftMargin.also { lp.leftMargin = it }
+        rightMargin.also { lp.rightMargin = it }
+        view.parent?.requestLayout()
+    }
+}
 
 @BindingAdapter(value = ["compatLeftDrawableRes", "compatLeftDrawableResTintColor"], requireAll = false)
 fun setCompoundDrawableRes(view: TextView, @DrawableRes drawableLeftRes: Int?, @ColorRes colorTintLeft: Int?) {
