@@ -27,6 +27,7 @@
         android:paddingRight="@dimen/bottom_sheet_padding_default"
         android:text="@{model.title}"
         android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+        android:textColor="@color/bottom_sheet_item_text"
         bind:compatLeftDrawable="@{model.iconDrawable}"
         bind:compatLeftDrawableRes="@{model.iconRes}"
         bind:compatLeftDrawableResTintColor="@{model.iconResTintColor}"

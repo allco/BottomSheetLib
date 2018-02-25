@@ -28,7 +28,6 @@ class MainActivity : AppCompatActivity() {
 
             // trivial items
             title { title = "Title item 1" }
-            divider {}
             clickableItem {
                 title = "Clickable item 1"
                 onClicked = {
@@ -51,7 +50,14 @@ class MainActivity : AppCompatActivity() {
                     false
                 }
             }
-
+            divider {}
+            clickableItem {
+                title = "Clickable item 4"
+                onClicked = {
+                    Log.d(TAG, "Clicked: " + title)
+                    false
+                }
+            }
 
             // a bit more complicated items
             divider {

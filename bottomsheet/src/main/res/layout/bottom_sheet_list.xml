@@ -9,6 +9,7 @@
         android:background="?android:attr/colorBackground"
         android:clipToPadding="false"
         android:paddingBottom="@dimen/bottom_sheet_padding_bottom"
+        android:paddingTop="@dimen/bottom_sheet_padding_bottom"
         bind:layoutManager="android.support.v7.widget.LinearLayoutManager" />
 
 </layout>
