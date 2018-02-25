@@ -1,13 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:bind="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    >
 
     <data>
 
         <variable
+            name="dialogInterface"
+            type="android.content.DialogInterface"
+            />
+
+        <variable
             name="model"
-            type="com.allco.ui.bottomsheet.BottomSheetSettings.ClickableItem" />
+            type="com.allco.ui.bottomsheet.BottomSheetSettings.ClickableItem"
+            />
     </data>
 
     <TextView
@@ -15,14 +23,14 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/bottom_sheet_text_height"
         android:background="?android:attr/selectableItemBackground"
+        android:clickable="true"
         android:contentDescription="@{model.title}"
         android:drawablePadding="@dimen/bottom_sheet_padding_double"
         android:ellipsize="end"
+        android:focusable="true"
         android:gravity="start|center"
         android:maxLines="1"
-        android:onClick="@{v->model.onClicked.invoke()}"
-        android:clickable="true"
-        android:focusable="true"
+        android:onClick="@{v->model.internalOnClicked.invoke(dialogInterface)}"
         android:paddingLeft="@dimen/bottom_sheet_padding_default"
         android:paddingRight="@dimen/bottom_sheet_padding_default"
         android:text="@{model.title}"
@@ -31,6 +39,7 @@
         bind:compatLeftDrawable="@{model.iconDrawable}"
         bind:compatLeftDrawableRes="@{model.iconRes}"
         bind:compatLeftDrawableResTintColor="@{model.iconResTintColor}"
-        tools:text="Clickable item" />
+        tools:text="Clickable item"
+        />
 
 </layout>

@@ -30,33 +30,22 @@ class MainActivity : AppCompatActivity() {
             title { title = "Title item 1" }
             clickableItem {
                 title = "Clickable item 1"
-                onClicked = {
-                    Log.d(TAG, "Clicked: " + title)
-                    false
-                }
+                onClicked = { Log.d(TAG, "Clicked: " + title) }
             }
             clickableItem {
                 title = "Clickable item 2"
-                onClicked = {
-                    Log.d(TAG, "Clicked: " + title)
-                    false
-                }
+                onClicked = { Log.d(TAG, "Clicked: " + title) }
             }
             title { title = "Title item 2" }
             clickableItem {
                 title = "Clickable item 3"
-                onClicked = {
-                    Log.d(TAG, "Clicked: " + title)
-                    false
-                }
+                onClicked = { Log.d(TAG, "Clicked: " + title) }
             }
             divider {}
             clickableItem {
-                title = "Clickable item 4"
-                onClicked = {
-                    Log.d(TAG, "Clicked: " + title)
-                    false
-                }
+                title = "Clickable item but non dismissible."
+                onClicked = { Log.d(TAG, "Clicked: " + title) }
+                dismissOnClick = false
             }
 
             // a bit more complicated items

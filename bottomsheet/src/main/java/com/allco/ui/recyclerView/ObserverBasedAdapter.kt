@@ -18,8 +18,9 @@ open class ObserverBasedAdapter(private val data: ItemList, private val dialogIn
         @get:LayoutRes
         val layout: Int
         val binder: ((ViewDataBinding, DialogInterface) -> Unit)
-            get() = { binding, _ ->
+            get() = { binding, dialogInterface ->
                 binding.setVariable(BR.model, Item@ this)
+                binding.setVariable(BR.dialogInterface, dialogInterface)
             }
     }
 

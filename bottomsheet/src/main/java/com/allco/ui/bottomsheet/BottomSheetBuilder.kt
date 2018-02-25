@@ -52,7 +52,13 @@ class BottomSheetSettings {
         var iconResTintColor: Int? = null
         @DrawableRes
         var iconRes: Int? = null
-        var onClicked: (() -> Boolean)? = null
+        var onClicked: (() -> Unit)? = null
+        var dismissOnClick: Boolean = true
+
+        val internalOnClicked = { dialogInterFace: DialogInterface ->
+            onClicked?.invoke()
+            if (dismissOnClick) dialogInterFace.dismiss()
+        }
 
         override val layout = R.layout.bottom_sheet_list_item
     }

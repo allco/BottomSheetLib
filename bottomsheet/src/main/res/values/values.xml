@@ -7,7 +7,7 @@
     <dimen name="bottom_sheet_padding_bottom">8dp</dimen>
     <dimen name="bottom_sheet_padding_double">32dp</dimen>
     <dimen name="bottom_sheet_padding_default">16dp</dimen>
-    <dimen name="bottom_sheet_divider_height">1dp</dimen>
+    <dimen name="bottom_sheet_divider_height">0.7dp</dimen>
 
     <color name="bottom_sheet_item_text">#DE000000</color>
     <color name="bottom_sheet_item_text_title">#8A000000</color>
