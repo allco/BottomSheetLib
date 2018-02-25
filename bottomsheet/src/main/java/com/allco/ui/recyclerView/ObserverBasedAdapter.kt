@@ -1,5 +1,6 @@
 package com.allco.ui.recyclerView
 
+import android.content.DialogInterface
 import android.databinding.DataBindingUtil
 import android.databinding.ObservableArrayList
 import android.databinding.ViewDataBinding
@@ -9,15 +10,15 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.allco.ui.bottomsheet.BR
 
-open class ObserverBasedAdapter(val data: ItemList) : RecyclerView.Adapter<ObserverBasedAdapter.ViewHolder>() {
+open class ObserverBasedAdapter(private val data: ItemList, private val dialogInterface: DialogInterface) : RecyclerView.Adapter<ObserverBasedAdapter.ViewHolder>() {
 
     class ItemList : ObservableArrayList<Item>()
 
     interface Item {
         @get:LayoutRes
         val layout: Int
-        val binder: ((binding: ViewDataBinding) -> Unit)
-            get() = { binding ->
+        val binder: ((ViewDataBinding, DialogInterface) -> Unit)
+            get() = { binding, _ ->
                 binding.setVariable(BR.model, Item@ this)
             }
     }
@@ -37,7 +38,7 @@ open class ObserverBasedAdapter(val data: ItemList) : RecyclerView.Adapter<Obser
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        data[position].binder(holder.binding)
+        data[position].binder(holder.binding, dialogInterface)
     }
 
     override fun getItemCount() = data.size

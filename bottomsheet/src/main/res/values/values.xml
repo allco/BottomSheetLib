@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="bottom_sheet_title_height">56dp</dimen>
-    <dimen name="bottom_sheet_text_height">56dp</dimen>
+    <dimen name="bottom_sheet_title_height">48dp</dimen>
+    <dimen name="bottom_sheet_text_height">48dp</dimen>
     <dimen name="bottom_sheet_padding_divider_top">7dp</dimen>
     <dimen name="bottom_sheet_padding_divider_bottom">8dp</dimen>
     <dimen name="bottom_sheet_padding_bottom">8dp</dimen>

@@ -16,6 +16,12 @@ fun Activity.bottomSheet(init: BottomSheetSettings.() -> Unit): BottomSheetBuild
 
 class BottomSheetSettings {
 
+    var onCanceled: (() -> Unit)? = null
+    var maxInitialHeightInPercents: Int = 100
+        set(value) {
+            field = value.coerceIn(0, 100)
+        }
+
     data class TitleItem(var title: String? = null) : ObserverBasedAdapter.Item {
         override val layout = R.layout.bottom_sheet_list_item_title
     }
@@ -28,15 +34,14 @@ class BottomSheetSettings {
 
     class CustomItem : ObserverBasedAdapter.Item {
         var layoutRes: Int? = null
-        var onBind: ((binding: ViewDataBinding) -> Unit)? = null
+        var onBind: ((ViewDataBinding, DialogInterface) -> Unit)? = null
 
         override val layout: Int
             get() = layoutRes
                     ?: throw IllegalStateException("layout is required for 'custom{}' item")
 
-        override val binder: ((binding: ViewDataBinding) -> Unit)
+        override val binder: ((ViewDataBinding, DialogInterface) -> Unit)
             get() = onBind ?: super.binder
-
     }
 
     class ClickableItem : ObserverBasedAdapter.Item {
@@ -52,9 +57,7 @@ class BottomSheetSettings {
         override val layout = R.layout.bottom_sheet_list_item
     }
 
-    val listItems = ObserverBasedAdapter.ItemList()
-
-    var onCanceled: (() -> Unit)? = null
+    internal val listItems = ObserverBasedAdapter.ItemList()
 
     fun title(action: TitleItem.() -> Unit) {
         listItems.add(TitleItem().apply(action))
