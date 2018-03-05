@@ -1,3 +1,5 @@
+[![](https://jitpack.io/v/allco/BottomSheetLib.svg)](https://jitpack.io/#allco/BottomSheetLib)
+
 # BottomSheetLib
 A tiny library which helps to use a BottomSheet defined by Material Design.
 
