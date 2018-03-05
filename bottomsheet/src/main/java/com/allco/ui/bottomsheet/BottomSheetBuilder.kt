@@ -7,6 +7,7 @@ import android.databinding.ViewDataBinding
 import android.graphics.drawable.Drawable
 import android.support.annotation.ColorRes
 import android.support.annotation.DrawableRes
+import android.support.v4.app.Fragment
 
 class BottomSheetSettings {
 
@@ -66,4 +67,7 @@ fun Activity.bottomSheet(init: BottomSheetSettings.() -> Unit): BottomSheetBuild
     return BottomSheetBuilder(this, BottomSheetSettings().apply { init() })
 }
 
+fun Fragment.bottomSheet(init: BottomSheetSettings.() -> Unit): BottomSheetBuilder {
+    return BottomSheetBuilder(this.context!!, BottomSheetSettings().apply { init() })
+}
 
