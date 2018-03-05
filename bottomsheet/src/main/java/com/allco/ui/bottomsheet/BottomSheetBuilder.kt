@@ -25,7 +25,7 @@ class BottomSheetSettings {
                            override var rightOffset: Int? = null) : Item, DividerViewModel
 
     data class CustomItem(var layoutRes: Int? = null,
-                          var onBind: ((ViewDataBinding, DialogInterface) -> Unit)? = null) : Item
+                          var onBind: ((ViewDataBinding, position: Int, DialogInterface) -> Unit)? = null) : Item
 
     data class ClickableItem(override var title: String? = null,
                              override var iconUrl: String? = null,

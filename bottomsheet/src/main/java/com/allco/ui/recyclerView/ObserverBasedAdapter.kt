@@ -16,8 +16,8 @@ open class ObserverBasedAdapter(private val data: ItemList) : RecyclerView.Adapt
     interface Item {
         @get:LayoutRes
         val layout: Int
-        val binder: ((ViewDataBinding) -> Unit)
-            get() = { binding ->
+        val binder: ((ViewDataBinding, Int) -> Unit)
+            get() = { binding, _ ->
                 binding.setVariable(BR.model, Item@ this)
             }
     }
@@ -37,7 +37,7 @@ open class ObserverBasedAdapter(private val data: ItemList) : RecyclerView.Adapt
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        data[position].binder(holder.binding)
+        data[position].binder(holder.binding, position)
     }
 
     override fun getItemCount() = data.size

@@ -60,29 +60,24 @@ class MainActivity : AppCompatActivity() {
                 iconResTintColor = R.color.colorAccent
                 onClicked = {
                     Log.d(TAG, "Clicked " + title)
-                    false
                 }
             }
 
             divider {}
 
             clickableItem {
-                title = "Photo camera. Drawable."
+                title = "Item with `Drawable` as icon."
                 iconDrawable = ResourcesCompat.getDrawable(resources, R.drawable.photo_icon, null)
                 onClicked = {
                     Log.d(TAG, "Clicked " + title)
-                    false
                 }
-            }
-
-            clickableItem {
-                title = "Item without icon"
             }
 
             custom {
                 layoutRes = R.layout.custom_layout
-                onBind = { binding, dialogInterface ->
+                onBind = { binding, position, dialogInterface ->
                     (binding as CustomLayoutBinding).apply {
+                        //model = setup data accordingly `position`
                         button.setOnClickListener {
                             dialogInterface.dismiss()
                         }

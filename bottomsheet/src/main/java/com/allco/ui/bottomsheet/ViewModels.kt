@@ -36,9 +36,9 @@ class CustomItemViewModel(private val data: BottomSheetSettings.CustomItem, priv
         get() = data.layoutRes
                 ?: throw IllegalStateException("`layout` property is required for 'custom{}' item")
 
-    override val binder: ((ViewDataBinding) -> Unit)
-        get() = { binding ->
-            data.onBind?.invoke(binding, dialog) ?: super.binder
+    override val binder: ((ViewDataBinding, Int) -> Unit)
+        get() = { binding, position ->
+            data.onBind?.invoke(binding, position, dialog) ?: super.binder
         }
 }
 
