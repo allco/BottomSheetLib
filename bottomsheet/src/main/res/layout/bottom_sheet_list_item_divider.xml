@@ -8,7 +8,7 @@
 
         <variable
             name="model"
-            type="com.allco.ui.bottomsheet.BottomSheetSettings.DividerItem"
+            type="com.allco.ui.bottomsheet.DividerViewModel"
             />
     </data>
 

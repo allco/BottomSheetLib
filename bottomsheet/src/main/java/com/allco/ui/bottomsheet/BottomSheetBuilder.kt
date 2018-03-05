@@ -7,12 +7,6 @@ import android.databinding.ViewDataBinding
 import android.graphics.drawable.Drawable
 import android.support.annotation.ColorRes
 import android.support.annotation.DrawableRes
-import com.allco.ui.recyclerView.ObserverBasedAdapter
-
-
-fun Activity.bottomSheet(init: BottomSheetSettings.() -> Unit): BottomSheetBuilder {
-    return BottomSheetBuilder(this, BottomSheetSettings().apply { init() })
-}
 
 class BottomSheetSettings {
 
@@ -22,48 +16,25 @@ class BottomSheetSettings {
             field = value.coerceIn(0, 100)
         }
 
-    data class TitleItem(var title: String? = null) : ObserverBasedAdapter.Item {
-        override val layout = R.layout.bottom_sheet_list_item_title
-    }
+    internal interface Item
 
-    data class DividerItem(
-            var leftOffset: Int? = null,
-            var rightOffset: Int? = null) : ObserverBasedAdapter.Item {
-        override val layout = R.layout.bottom_sheet_list_item_divider
-    }
+    data class TitleItem(override var title: String? = null) : Item, TitleViewModel
 
-    class CustomItem : ObserverBasedAdapter.Item {
-        var layoutRes: Int? = null
-        var onBind: ((ViewDataBinding, DialogInterface) -> Unit)? = null
+    data class DividerItem(override var leftOffset: Int? = null,
+                           override var rightOffset: Int? = null) : Item, DividerViewModel
 
-        override val layout: Int
-            get() = layoutRes
-                    ?: throw IllegalStateException("layout is required for 'custom{}' item")
+    data class CustomItem(var layoutRes: Int? = null,
+                          var onBind: ((ViewDataBinding, DialogInterface) -> Unit)? = null) : Item
 
-        override val binder: ((ViewDataBinding, DialogInterface) -> Unit)
-            get() = onBind ?: super.binder
-    }
+    data class ClickableItem(override var title: String? = null,
+                             override var iconUrl: String? = null,
+                             override var iconDrawable: Drawable? = null,
+                             override var onClicked: (() -> Unit)? = null,
+                             @DrawableRes override var iconRes: Int? = null,
+                             @ColorRes override var iconResTintColor: Int? = null,
+                             var dismissOnClick: Boolean = true) : Item, ClickableViewModel
 
-    class ClickableItem : ObserverBasedAdapter.Item {
-        var title: String? = null
-        var iconUrl: String? = null
-        var iconDrawable: Drawable? = null
-        @ColorRes
-        var iconResTintColor: Int? = null
-        @DrawableRes
-        var iconRes: Int? = null
-        var onClicked: (() -> Unit)? = null
-        var dismissOnClick: Boolean = true
-
-        val internalOnClicked = { dialogInterFace: DialogInterface ->
-            onClicked?.invoke()
-            if (dismissOnClick) dialogInterFace.dismiss()
-        }
-
-        override val layout = R.layout.bottom_sheet_list_item
-    }
-
-    internal val listItems = ObserverBasedAdapter.ItemList()
+    internal val listItems = mutableListOf<Item>()
 
     fun title(action: TitleItem.() -> Unit) {
         listItems.add(TitleItem().apply(action))
@@ -90,4 +61,9 @@ class BottomSheetBuilder(private val context: Context, private var settings: Bot
         }
     }
 }
+
+fun Activity.bottomSheet(init: BottomSheetSettings.() -> Unit): BottomSheetBuilder {
+    return BottomSheetBuilder(this, BottomSheetSettings().apply { init() })
+}
+
 

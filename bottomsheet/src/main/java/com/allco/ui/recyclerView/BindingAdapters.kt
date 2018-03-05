@@ -11,12 +11,18 @@ import android.support.annotation.DrawableRes
 import android.support.graphics.drawable.VectorDrawableCompat
 import android.support.v4.content.ContextCompat
 import android.support.v4.graphics.drawable.DrawableCompat
+import android.support.v7.widget.RecyclerView
 import android.text.TextUtils.isEmpty
 import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import com.squareup.picasso.Picasso
+
+@BindingAdapter(value = ["listItems"])
+fun setRecyclerViewItems(recyclerView: RecyclerView, listItems: ObserverBasedAdapter.ItemList) {
+    recyclerView.adapter = ObserverBasedAdapter(listItems)
+}
 
 @BindingAdapter(value = ["marginLeft", "marginRight"], requireAll = false)
 fun setParentLayoutLeftMargins(view: View, leftMargin: Int, rightMargin: Int) {

@@ -18,7 +18,7 @@ class BottomSheetDialog(context: Context) : android.support.design.widget.Bottom
 
     internal fun init(settings: BottomSheetSettings) {
         val binding = BottomSheetListBinding.inflate(layoutInflater)
-        binding.rvBottomSheet.adapter = ObserverBasedAdapter(settings.listItems, this)
+        binding.items = convertToViewModelList(settings)
         setContentView(binding.root)
 
         @Suppress("UNUSED_ANONYMOUS_PARAMETER")
@@ -28,6 +28,21 @@ class BottomSheetDialog(context: Context) : android.support.design.widget.Bottom
             bottomSheet.setBackgroundColor(Color.TRANSPARENT)
             val maxInitialHeight = (getScreenHeight() * settings.maxInitialHeightInPercents / 100f).roundToInt()
             BottomSheetBehavior.from(bottomSheet).apply { peekHeight = min(bottomSheet.height, maxInitialHeight) }
+        }
+    }
+
+    private fun convertToViewModelList(settings: BottomSheetSettings): ObserverBasedAdapter.ItemList {
+        return ObserverBasedAdapter.ItemList().also { list ->
+            for (it in settings.listItems) {
+                // in case of linear BS use stack of linear VM's
+                list += when (it) {
+                    is BottomSheetSettings.TitleItem -> TitleViewModelImpl(it)
+                    is BottomSheetSettings.DividerItem -> DividerViewModelImpl(it)
+                    is BottomSheetSettings.ClickableItem -> ClickableViewModelImpl(it, this)
+                    is BottomSheetSettings.CustomItem -> CustomItemViewModel(it, this)
+                    else -> throw IllegalArgumentException("`it` has unknown type")
+                }
+            }
         }
     }
 

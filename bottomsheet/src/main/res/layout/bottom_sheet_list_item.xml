@@ -6,15 +6,9 @@
     >
 
     <data>
-
-        <variable
-            name="dialogInterface"
-            type="android.content.DialogInterface"
-            />
-
         <variable
             name="model"
-            type="com.allco.ui.bottomsheet.BottomSheetSettings.ClickableItem"
+            type="com.allco.ui.bottomsheet.ClickableViewModel"
             />
     </data>
 
@@ -30,7 +24,7 @@
         android:focusable="true"
         android:gravity="start|center"
         android:maxLines="1"
-        android:onClick="@{v->model.internalOnClicked.invoke(dialogInterface)}"
+        android:onClick="@{v->model.onClicked.invoke()}"
         android:paddingLeft="@dimen/bottom_sheet_padding_default"
         android:paddingRight="@dimen/bottom_sheet_padding_default"
         android:text="@{model.title}"
