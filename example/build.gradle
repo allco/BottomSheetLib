@@ -42,6 +42,8 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
     implementation 'com.android.support:recyclerview-v7:27.1.0'
+    // Anko Commons
+    implementation "org.jetbrains.anko:anko-commons:$anko_version"
 }
 repositories {
     mavenCentral()

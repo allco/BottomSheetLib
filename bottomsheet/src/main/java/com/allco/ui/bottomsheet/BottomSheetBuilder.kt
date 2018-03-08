@@ -32,7 +32,7 @@ class BottomSheetSettings {
                              override var iconDrawable: Drawable? = null,
                              override var onClicked: (() -> Unit)? = null,
                              @DrawableRes override var iconRes: Int? = null,
-                             @ColorRes override var iconResTintColor: Int? = null,
+                             @ColorRes override var iconResTintColor: Int = R.color.bottom_sheet_item_text_title,
                              var dismissOnClick: Boolean = true) : Item, ClickableViewModel
 
     internal val listItems = mutableListOf<Item>()

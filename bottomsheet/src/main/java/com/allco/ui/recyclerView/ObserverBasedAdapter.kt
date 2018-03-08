@@ -32,7 +32,7 @@ open class ObserverBasedAdapter(private val data: ItemList) : RecyclerView.Adapt
         })
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder? {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(DataBindingUtil.inflate(LayoutInflater.from(parent.context), viewType, parent, false))
     }
 

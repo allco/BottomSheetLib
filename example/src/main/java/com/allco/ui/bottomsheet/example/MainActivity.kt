@@ -8,6 +8,7 @@ import android.util.Log
 import com.allco.ui.bottomsheet.bottomSheet
 import com.allco.ui.bottomsheet.example.databinding.ActivityMainBinding
 import com.allco.ui.bottomsheet.example.databinding.CustomLayoutBinding
+import org.jetbrains.anko.toast
 
 class MainActivity : AppCompatActivity() {
     companion object {
@@ -18,7 +19,35 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         val binding = DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
         binding.btRunLinear.setOnClickListener { runLinearBottomSheet() }
+        binding.btRunShareUploadCopy.setOnClickListener { runExample1() }
     }
+
+    private fun runExample1() {
+        bottomSheet {
+            clickableItem {
+                title = "Share"
+                iconRes = R.drawable.ic_share_black
+                onClicked = { toast(title.toString()) }
+            }
+            clickableItem {
+                title = "Upload"
+                iconRes = R.drawable.ic_cloud_upload_black
+                onClicked = { toast(title.toString()) }
+            }
+            clickableItem {
+                title = "Copy"
+                iconRes = R.drawable.ic_content_copy_black
+                onClicked = { toast(title.toString()) }
+            }
+            clickableItem {
+                title = "Print this page"
+                iconRes = R.drawable.ic_print_black
+                onClicked = { toast(title.toString()) }
+            }
+        }.show()
+    }
+
+
 
     private fun runLinearBottomSheet() {
 
