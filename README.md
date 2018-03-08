@@ -86,7 +86,7 @@ The following reproduces some Examples [provided by Google](https://material.io/
 ### #3
 Custom items
 
-<img src="doc/example2.png" alt="Example #1 image." width=400 />
+<img src="doc/example3.png" alt="Example #1 image." width=400 />
 
 ```kotlin
     fun runExample3(view: View) {
