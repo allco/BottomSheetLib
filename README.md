@@ -7,9 +7,12 @@ A tiny library which helps to use a BottomSheet defined by Material Design.
 ### Include
 TBD
 
-#### Example #1
 
-<img src="doc/example1.png" alt="Example #1 image." />
+## Examples
+The following reproduces some Examples provided by Google:  
+
+### #1
+<img src="doc/example1.png" alt="Example #1 image." /> 
 
 ```
 private fun runExample1() {
