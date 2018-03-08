@@ -10,17 +10,26 @@ which is inarguably useful but it requires a lot of boiler plate code even if it
 This library is supposed to simplify the creation of general purpose modal BottomSheets by providing configuration DSL based on Kotlin-extensions. 
 
 ## Requirements
-The client project should have *enabled DataBinding* at .gradle configuration like:
-```groovy
-android{
-    ...
-    dataBinding {enabled = true}
-}
+*DataBinding should be enabled*
+ Add it in your module's build.gradle:
 
-```
+		dataBinding {enabled = true}
 
-## How to use
-TBD
+## Include
+Step 1. Add it in your root build.gradle at the end of repositories:
+
+	allprojects {
+		repositories {
+			...
+			maven { url 'https://jitpack.io' }
+		}
+	}
+	
+Step 2. Add the dependency
+
+	dependencies {
+	        compile 'com.github.allco:BottomSheetLib:v1.0'
+	}
 
 ## Examples
 The following examples was inspired by [Google's definition of BottomSheet](https://material.io/guidelines/components/bottom-sheets.html#bottom-sheets-specs).  
