@@ -9,7 +9,7 @@ TBD
 
 
 ## Examples
-The following reproduces some Examples [provided by Google](https://material.io/guidelines/components/bottom-sheets.html#bottom-sheets-specs).  
+The following examples was inspired by [Google's definition of BottomSheet](https://material.io/guidelines/components/bottom-sheets.html#bottom-sheets-specs).  
 
 ### #1
 <img src="doc/example1.png" alt="Example #1 image." width=400 /> 
@@ -42,7 +42,7 @@ The following reproduces some Examples [provided by Google](https://material.io/
 ```
 
 ### #2
-<img src="doc/example2.png" alt="Example #1 image." width=400 />
+<img src="doc/example2.png" alt="Example #2 image." width=400 />
 
 ```kotlin
     fun runExample2(view: View) {
@@ -86,7 +86,7 @@ The following reproduces some Examples [provided by Google](https://material.io/
 ### #3
 Custom items
 
-<img src="doc/example3.png" alt="Example #1 image." width=400 />
+<img src="doc/example3.png" alt="Example #3 image." width=400 />
 
 ```kotlin
     fun runExample3(view: View) {
