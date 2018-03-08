@@ -29,6 +29,8 @@ class BottomSheetDialog(context: Context) : android.support.design.widget.Bottom
             val maxInitialHeight = (getScreenHeight() * settings.maxInitialHeightInPercents / 100f).roundToInt()
             BottomSheetBehavior.from(bottomSheet).apply { peekHeight = min(bottomSheet.height, maxInitialHeight) }
         }
+
+        setOnCancelListener { _ -> settings.onCanceled?.invoke() }
     }
 
     private fun convertToViewModelList(settings: BottomSheetSettings): ObserverBasedAdapter.ItemList {

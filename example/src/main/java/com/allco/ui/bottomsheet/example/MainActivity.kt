@@ -1,15 +1,16 @@
 package com.allco.ui.bottomsheet.example
 
 import android.databinding.DataBindingUtil
+import android.graphics.Color
 import android.os.Bundle
 import android.support.v4.content.res.ResourcesCompat
 import android.support.v7.app.AppCompatActivity
-import android.util.Log
 import android.view.View
 import com.allco.ui.bottomsheet.bottomSheet
 import com.allco.ui.bottomsheet.example.databinding.ActivityMainBinding
 import com.allco.ui.bottomsheet.example.databinding.CustomLayoutBinding
 import org.jetbrains.anko.toast
+import org.jetbrains.anko.withAlpha
 
 class MainActivity : AppCompatActivity() {
     companion object {
@@ -83,75 +84,46 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-    fun runExampleN(view: View) {
-
+    fun runExample3(view: View) {
         bottomSheet {
-
             maxInitialHeightInPercents = 100
+            onCanceled = { toast("Bottomsheet was canceled") }
 
-            // trivial items
-            title { title = "Title item 1" }
-            clickableItem {
-                title = "Clickable item 1"
-                onClicked = { Log.d(TAG, "Clicked: " + title) }
-            }
-            clickableItem {
-                title = "Clickable item 2"
-                onClicked = { Log.d(TAG, "Clicked: " + title) }
-            }
-            title { title = "Title item 2" }
-            clickableItem {
-                title = "Clickable item 3"
-                onClicked = { Log.d(TAG, "Clicked: " + title) }
-            }
-            divider {}
-            clickableItem {
-                title = "Clickable item but non dismissible."
-                onClicked = { Log.d(TAG, "Clicked: " + title) }
-                dismissOnClick = false
-            }
+            title { title = "Custom items" }
 
-            // a bit more complicated items
             divider {
+                // shortened divider
                 leftOffset = resources.getDimensionPixelOffset(R.dimen.dividerLeftOffset)
                 rightOffset = resources.getDimensionPixelOffset(R.dimen.dividerRightOffset)
             }
 
             clickableItem {
-                title = "Magenta car. Tinted vector icon."
-                iconRes = R.drawable.ic_directions_car_black_24dp
-                iconResTintColor = R.color.colorAccent
-                onClicked = {
-                    Log.d(TAG, "Clicked " + title)
-                }
-            }
-
-            divider {}
-
-            clickableItem {
                 title = "Item with `Drawable` as icon."
                 iconDrawable = ResourcesCompat.getDrawable(resources, R.drawable.photo_icon, null)
-                onClicked = {
-                    Log.d(TAG, "Clicked " + title)
-                }
             }
+
+            divider {} // full-length divider
 
             custom {
                 layoutRes = R.layout.custom_layout
                 onBind = { binding, position, dialogInterface ->
                     (binding as CustomLayoutBinding).apply {
                         //model = setup data accordingly `position`
+                        binding.ratingBar.setOnRatingBarChangeListener { ratingBar, rating, _ ->
+                            binding.root.setBackgroundColor(when {
+                                rating < 1 -> Color.RED.withAlpha(0x88)
+                                rating < 2 -> Color.MAGENTA.withAlpha(0x88)
+                                rating < 3 -> Color.YELLOW.withAlpha(0x88)
+                                rating < 4 -> Color.CYAN.withAlpha(0x88)
+                                else -> Color.GREEN.withAlpha(0x88)
+                            })
+                        }
                         button.setOnClickListener {
                             dialogInterface.dismiss()
                         }
                     }
                 }
             }
-
-            onCanceled = {
-                Log.d(TAG, "Bottomsheet was canceled")
-            }
         }.show()
-
     }
 }

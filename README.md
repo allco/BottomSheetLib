@@ -82,3 +82,39 @@ The following reproduces some Examples [provided by Google](https://material.io/
     }
 
 ``` 
+
+### #3
+Custom items
+<img src="doc/example2.png" alt="Example #1 image." width=400 />
+
+```kotlin
+    fun runExample3(view: View) {
+        bottomSheet {
+            maxInitialHeightInPercents = 100
+            onCanceled = { toast("Bottomsheet was canceled") }
+
+            title { title = "Custom items" }
+
+            divider { // shortened divider
+                leftOffset = resources.getDimensionPixelOffset(R.dimen.dividerLeftOffset)
+                rightOffset = resources.getDimensionPixelOffset(R.dimen.dividerRightOffset)
+            }
+
+            clickableItem {
+                title = "Item with `Drawable` as icon."
+                iconDrawable = ResourcesCompat.getDrawable(resources, R.drawable.photo_icon, null)
+            }
+            
+            divider {} // full-length divider
+
+            custom {
+                layoutRes = R.layout.custom_layout
+                onBind = { binding, position, dialogInterface ->
+                    (binding as CustomLayoutBinding).apply {
+                       binding.model = ... // setup data accordingly `position`
+                    }
+                }
+            }
+        }.show()
+    }
+```

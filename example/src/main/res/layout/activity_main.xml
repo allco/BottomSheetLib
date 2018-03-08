@@ -27,8 +27,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
-            android:text="Custom elements"
-            android:onClick="runExampleN" />
+            android:onClick="runExample3"
+            android:text="Example #3" />
 
     </LinearLayout>
 </layout>
