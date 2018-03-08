@@ -1,12 +1,26 @@
 [![](https://jitpack.io/v/allco/BottomSheetLib.svg)](https://jitpack.io/#allco/BottomSheetLib)
 
 # BottomSheetLib
-A tiny library which helps to use a BottomSheet defined by Material Design.
+A tiny library which helps to use a BottomSheet defined by Material Design.   
+
+## Motivation
+There is an authentic implementation [provided by Goolge](https://materialdoc.com/components/bottom-sheets/) 
+which is inarguably useful but it requires a lot of boiler plate code even if its only needed to show something trivial (like yes/no buttons).  
+
+This library is supposed to simplify the creation of general purpose modal BottomSheets by providing configuration DSL based on Kotlin-extensions. 
+
+## Requirements
+The client project should have *enabled DataBinding* at .gradle configuration like:
+```groovy
+android{
+    ...
+    dataBinding {enabled = true}
+}
+
+```
 
 ## How to use
-### Include
 TBD
-
 
 ## Examples
 The following examples was inspired by [Google's definition of BottomSheet](https://material.io/guidelines/components/bottom-sheets.html#bottom-sheets-specs).  
