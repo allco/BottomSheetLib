@@ -9,10 +9,10 @@ TBD
 
 
 ## Examples
-The following reproduces some Examples provided by Google:  
+The following reproduces some Examples [provided by Google](https://material.io/guidelines/components/bottom-sheets.html#bottom-sheets-specs).  
 
 ### #1
-<img src="doc/example1.png" alt="Example #1 image." /> 
+<img src="doc/example1.png" alt="Example #1 image." width=400 /> 
 
 ```
 private fun runExample1() {
