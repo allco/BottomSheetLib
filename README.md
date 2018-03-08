@@ -14,8 +14,8 @@ The following reproduces some Examples [provided by Google](https://material.io/
 ### #1
 <img src="doc/example1.png" alt="Example #1 image." width=400 /> 
 
-```
-private fun runExample1() {
+```kotlin
+    fun runExample1(view: View) {
         bottomSheet {
             clickableItem {
                 title = "Share"
@@ -40,3 +40,45 @@ private fun runExample1() {
         }.show()
     }
 ```
+
+### #2
+<img src="doc/example2.png" alt="Example #1 image." width=400 />
+
+```kotlin
+    fun runExample2(view: View) {
+        bottomSheet {
+            clickableItem {
+                title = "Document"
+                iconResTintColor = R.color.icon_document
+                iconRes = R.drawable.ic_insert_chart_black
+                onClicked = { toast(title.toString()) }
+            }
+            clickableItem {
+                title = "Spreadsheet"
+                iconResTintColor = R.color.icon_spreadsheet
+                iconRes = R.drawable.ic_insert_photo
+                onClicked = { toast(title.toString()) }
+            }
+            clickableItem {
+                title = "Folder"
+                iconRes = R.drawable.ic_folder_black
+                onClicked = { toast(title.toString()) }
+            }
+
+            divider { }
+
+            clickableItem {
+                title = "Upload photos or videos"
+                iconRes = R.drawable.ic_cloud_upload_black
+                onClicked = { toast(title.toString()) }
+            }
+
+            clickableItem {
+                title = "Use camera"
+                iconRes = R.drawable.ic_photo_camera_black
+                onClicked = { toast(title.toString()) }
+            }
+        }.show()
+    }
+
+``` 

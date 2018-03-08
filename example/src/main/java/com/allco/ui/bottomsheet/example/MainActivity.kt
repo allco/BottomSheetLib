@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.support.v4.content.res.ResourcesCompat
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
+import android.view.View
 import com.allco.ui.bottomsheet.bottomSheet
 import com.allco.ui.bottomsheet.example.databinding.ActivityMainBinding
 import com.allco.ui.bottomsheet.example.databinding.CustomLayoutBinding
@@ -17,12 +18,10 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val binding = DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
-        binding.btRunLinear.setOnClickListener { runLinearBottomSheet() }
-        binding.btRunShareUploadCopy.setOnClickListener { runExample1() }
+        DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
     }
 
-    private fun runExample1() {
+    fun runExample1(view: View) {
         bottomSheet {
             clickableItem {
                 title = "Share"
@@ -47,9 +46,44 @@ class MainActivity : AppCompatActivity() {
         }.show()
     }
 
+    fun runExample2(view: View) {
+        bottomSheet {
+            clickableItem {
+                title = "Document"
+                iconResTintColor = R.color.icon_document
+                iconRes = R.drawable.ic_insert_chart_black
+                onClicked = { toast(title.toString()) }
+            }
+            clickableItem {
+                title = "Spreadsheet"
+                iconResTintColor = R.color.icon_spreadsheet
+                iconRes = R.drawable.ic_insert_photo
+                onClicked = { toast(title.toString()) }
+            }
+            clickableItem {
+                title = "Folder"
+                iconRes = R.drawable.ic_folder_black
+                onClicked = { toast(title.toString()) }
+            }
+
+            divider { }
+
+            clickableItem {
+                title = "Upload photos or videos"
+                iconRes = R.drawable.ic_cloud_upload_black
+                onClicked = { toast(title.toString()) }
+            }
+
+            clickableItem {
+                title = "Use camera"
+                iconRes = R.drawable.ic_photo_camera_black
+                onClicked = { toast(title.toString()) }
+            }
+        }.show()
+    }
 
 
-    private fun runLinearBottomSheet() {
+    fun runExampleN(view: View) {
 
         bottomSheet {
 

@@ -3,4 +3,8 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+
+    <color name="icon_document">#4688f1</color>
+    <color name="icon_spreadsheet">#199c5a</color>
+
 </resources>
