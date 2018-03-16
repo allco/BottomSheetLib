@@ -10,9 +10,77 @@ import android.support.annotation.DrawableRes
 import android.support.v4.app.Fragment
 
 /**
+ * Creates [BottomSheetBuilder]
+ * @param action an configuration action for the [BottomSheetSettings]
+ */
+fun Activity.bottomSheet(action: BottomSheetSettings.() -> Unit): BottomSheetBuilder {
+    return BottomSheetBuilder(this, BottomSheetSettings().apply { action() })
+}
+
+/**
+ * Creates [BottomSheetBuilder]
+ * @param action an configuration action for the [BottomSheetSettings]
+ */
+fun Fragment.bottomSheet(action: BottomSheetSettings.() -> Unit): BottomSheetBuilder {
+    return BottomSheetBuilder(this.context!!, BottomSheetSettings().apply { action() })
+}
+
+/** Represents the configured BottomSheet  */
+class BottomSheetBuilder internal constructor(private val context: Context, private var settings: BottomSheetSettings) {
+    /** Actually shows the BottomSheet */
+    fun show(): DialogInterface {
+        return BottomSheetDialog(context).apply {
+            init(settings)
+            show()
+        }
+    }
+}
+
+/**
  * Represents settings for [BottomSheetBuilder]
  */
 class BottomSheetSettings {
+
+    /**
+     * Creates a title item
+     *  @param action an configuration action for the [TitleItem]
+     */
+    fun title(action: TitleItem.() -> Unit) {
+        listItems.add(TitleItem().apply(action))
+    }
+
+    /**
+     * Creates a clickable item
+     *  @param action an configuration action for the [ClickableItem]
+     */
+    fun clickableItem(action: ClickableItem.() -> Unit) {
+        listItems.add(ClickableItem().apply(action))
+    }
+
+    /**
+     * Creates a divider items
+     *  @param action an configuration action for the [DividerItem]
+     */
+    fun divider(action: DividerItem.() -> Unit) {
+        listItems.add(DividerItem().apply(action))
+    }
+
+    /**
+     * Creates an item with custom layout
+     *  @param action an configuration action for the [CustomItem]
+     */
+    fun custom(action: CustomItem.() -> Unit) {
+        listItems.add(CustomItem().apply(action))
+    }
+
+    /** an action, which will be invoked in case if the BottomSheet is canceled (user pushed "backButton" or tapped beside) */
+    var onCanceled: (() -> Unit)? = null
+    /** indicates the maximum initial height of the BottomSheet in percents of available screen height */
+    var maxInitialHeightInPercents: Int = 100
+        set(value) {
+            field = value.coerceIn(0, 100)
+        }
+
 
     internal interface Item
 
@@ -56,73 +124,6 @@ class BottomSheetSettings {
                              @ColorRes override var iconResTintColor: Int = R.color.bottom_sheet_item_text_title,
                              var dismissOnClick: Boolean = true) : Item, ClickableViewModel
 
-    /** an action, which is being invoked in case if the BottomSheet was canceled (user pushed "backButton" or tapped beside) */
-    var onCanceled: (() -> Unit)? = null
-    /** indicates the maximum initial height of the BottomSheet in percents of available screen height */
-    var maxInitialHeightInPercents: Int = 100
-        set(value) {
-            field = value.coerceIn(0, 100)
-        }
-
     internal val listItems = mutableListOf<Item>()
-
-    /**
-     * Creates a title item
-     *  @param action an configuration action for the [TitleItem]
-     */
-    fun title(action: TitleItem.() -> Unit) {
-        listItems.add(TitleItem().apply(action))
-    }
-
-    /**
-     * Creates a clickable item
-     *  @param action an configuration action for the [ClickableItem]
-     */
-    fun clickableItem(action: ClickableItem.() -> Unit) {
-        listItems.add(ClickableItem().apply(action))
-    }
-
-    /**
-     * Creates a divider items
-     *  @param action an configuration action for the [DividerItem]
-     */
-    fun divider(action: DividerItem.() -> Unit) {
-        listItems.add(DividerItem().apply(action))
-    }
-
-    /**
-     * Creates an item with custom layout
-     *  @param action an configuration action for the [CustomItem]
-     */
-    fun custom(action: CustomItem.() -> Unit) {
-        listItems.add(CustomItem().apply(action))
-    }
-}
-
-/** Represents the configured BottomSheet  */
-class BottomSheetBuilder internal constructor(private val context: Context, private var settings: BottomSheetSettings) {
-    /** Actually shows the BottomSheet */
-    fun show(): DialogInterface {
-        return BottomSheetDialog(context).apply {
-            init(settings)
-            show()
-        }
-    }
-}
-
-/**
- * Creates [BottomSheetBuilder]
- * @param init an configuration action for the [BottomSheetSettings]
- */
-fun Activity.bottomSheet(init: BottomSheetSettings.() -> Unit): BottomSheetBuilder {
-    return BottomSheetBuilder(this, BottomSheetSettings().apply { init() })
-}
-
-/**
- * Creates [BottomSheetBuilder]
- * @param init an configuration action for the [BottomSheetSettings]
- */
-fun Fragment.bottomSheet(init: BottomSheetSettings.() -> Unit): BottomSheetBuilder {
-    return BottomSheetBuilder(this.context!!, BottomSheetSettings().apply { init() })
 }
 
