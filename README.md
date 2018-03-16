@@ -4,10 +4,10 @@
 A tiny library which helps to use a [BottomSheet defined by Material Design](https://material.io/guidelines/components/bottom-sheets.html).   
 
 ## Motivation
-There is an authentic implementation [provided by Goolge](https://materialdoc.com/components/bottom-sheets/) for permanent BottomSheet 
-which is inarguably useful but there is no any simple solution for *modal BottomSheets* especially if it is only needed to show something trivial (like yes/no buttons).  
+There is an authentic implementation [provided by Goolge](https://materialdoc.com/components/bottom-sheets/) for **permanent BottomSheet** 
+which is inarguably useful but there is no any simple solution for **modal BottomSheets** especially if it is only needed to show something trivial (like yes/no buttons).  
 
-This library is supposed to simplify the creation of general purpose *modal BottomSheets* by providing configuration DSL based on Kotlin-extensions. 
+This library is supposed to simplify the creation of general purpose **modal BottomSheets** by providing configuration DSL based on Kotlin-extensions. 
 
 ## Requirements
 *DataBinding should be enabled* at your project. Add it in your module's build.gradle:
