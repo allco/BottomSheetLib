@@ -1,17 +1,16 @@
 [![](https://jitpack.io/v/allco/BottomSheetLib.svg)](https://jitpack.io/#allco/BottomSheetLib)
 
 # BottomSheetLib
-A tiny library which helps to use a BottomSheet defined by Material Design.   
+A tiny library which helps to use a [BottomSheet defined by Material Design](https://material.io/guidelines/components/bottom-sheets.html).   
 
 ## Motivation
-There is an authentic implementation [provided by Goolge](https://materialdoc.com/components/bottom-sheets/) 
-which is inarguably useful but it requires a lot of boiler plate code even if its only needed to show something trivial (like yes/no buttons).  
+There is an authentic implementation [provided by Goolge](https://materialdoc.com/components/bottom-sheets/) for permanent BottomSheet 
+which is inarguably useful but there is no any simple solution for *modal BottomSheets* especially if it is only needed to show something trivial (like yes/no buttons).  
 
-This library is supposed to simplify the creation of general purpose modal BottomSheets by providing configuration DSL based on Kotlin-extensions. 
+This library is supposed to simplify the creation of general purpose *modal BottomSheets* by providing configuration DSL based on Kotlin-extensions. 
 
 ## Requirements
-*DataBinding should be enabled*
- Add it in your module's build.gradle:
+*DataBinding should be enabled* at your project. Add it in your module's build.gradle:
 
 		dataBinding {enabled = true}
 
@@ -142,3 +141,11 @@ Custom items
         }.show()
     }
 ```
+
+# How to use
+
+1. Call `bottomSheet(...)` on an Activity or Fragment in order to get the `BottomSheetBuilder`.
+2. Provide `bottomSheet(...)` with an action which supposed to configure the BottomSheet.
+3. Call `bottomSheetBuilder.show()` to actually show the BottomSheet.  
+
+For more information about available options check KDoc [here](https://github.com/allco/BottomSheetLib/blob/master/bottomsheet/src/main/java/com/allco/ui/bottomsheet/BottomSheetBuilder.kt)  
