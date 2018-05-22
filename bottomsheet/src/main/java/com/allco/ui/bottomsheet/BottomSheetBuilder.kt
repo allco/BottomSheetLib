@@ -7,6 +7,7 @@ import android.databinding.ViewDataBinding
 import android.graphics.drawable.Drawable
 import android.support.annotation.ColorRes
 import android.support.annotation.DrawableRes
+import android.support.annotation.StringRes
 import android.support.v4.app.Fragment
 
 /**
@@ -81,30 +82,36 @@ class BottomSheetSettings {
             field = value.coerceIn(0, 100)
         }
 
-
     internal interface Item
 
     /**
      * Represents unclickable item with title
      * @property title the text which will be shown as a title
      */
-    data class TitleItem(override var title: String? = null) : Item, TitleViewModel
+    data class TitleItem(
+        override var title: String? = null,
+        @StringRes var titleRes: Int? = null
+    ) : Item, TitleViewModel
 
     /**
      * Represents the horizontal line item aka divider
      * @property leftOffset blank gap from left side in pixels
      * @property rightOffset blank gap from right side in pixels
      */
-    data class DividerItem(override var leftOffset: Int? = null,
-                           override var rightOffset: Int? = null) : Item, DividerViewModel
+    data class DividerItem(
+        override var leftOffset: Int? = null,
+        override var rightOffset: Int? = null
+    ) : Item, DividerViewModel
 
     /**
      * Represents an item with custom layout
      * @property layoutRes id of layout from resource
      * @property onBind action which will be called every time when the [layoutRes] is supposed to be populated with actual data.
      */
-    data class CustomItem(var layoutRes: Int? = null,
-                          var onBind: ((binding: ViewDataBinding, position: Int, dialog: DialogInterface) -> Unit)? = null) : Item
+    data class CustomItem(
+        var layoutRes: Int? = null,
+        var onBind: ((binding: ViewDataBinding, position: Int, dialog: DialogInterface) -> Unit)? = null
+    ) : Item
 
     /**
      * Represents an clickable item which can optionally can have a title and an icon.
@@ -116,13 +123,16 @@ class BottomSheetSettings {
      * @property onClicked an action which will be invoked is the user tapped the item
      * @property dismissOnClick if `false` then the BottomSheet will not be dismissed automatically if the user tapped the item
      */
-    data class ClickableItem(override var title: String? = null,
-                             override var iconUrl: String? = null,
-                             override var iconDrawable: Drawable? = null,
-                             override var onClicked: (() -> Unit)? = null,
-                             @DrawableRes override var iconRes: Int? = null,
-                             @ColorRes override var iconResTintColor: Int = R.color.bottom_sheet_item_text_title,
-                             var dismissOnClick: Boolean = true) : Item, ClickableViewModel
+    data class ClickableItem(
+        override var title: String? = null,
+        @StringRes var titleRes: Int? = null,
+        override var iconUrl: String? = null,
+        override var iconDrawable: Drawable? = null,
+        override var onClicked: (() -> Unit)? = null,
+        @DrawableRes override var iconRes: Int? = null,
+        @ColorRes override var iconResTintColor: Int = R.color.bottom_sheet_item_text_title,
+        var dismissOnClick: Boolean = true
+    ) : Item, ClickableViewModel
 
     internal val listItems = mutableListOf<Item>()
 }

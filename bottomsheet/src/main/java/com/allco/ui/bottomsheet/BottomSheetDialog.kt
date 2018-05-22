@@ -35,14 +35,20 @@ class BottomSheetDialog(context: Context) : android.support.design.widget.Bottom
 
     private fun convertToViewModelList(settings: BottomSheetSettings): ObserverBasedAdapter.ItemList {
         return ObserverBasedAdapter.ItemList().also { list ->
-            for (it in settings.listItems) {
+            for (item in settings.listItems) {
                 // in case of linear BS use stack of linear VM's
-                list += when (it) {
-                    is BottomSheetSettings.TitleItem -> TitleViewModelImpl(it)
-                    is BottomSheetSettings.DividerItem -> DividerViewModelImpl(it)
-                    is BottomSheetSettings.ClickableItem -> ClickableViewModelImpl(it, this)
-                    is BottomSheetSettings.CustomItem -> CustomItemViewModel(it, this)
-                    else -> throw IllegalArgumentException("`it` has unknown type")
+                list += when (item) {
+                    is BottomSheetSettings.TitleItem -> {
+                        item.titleRes?.also { item.title = context.getString(it) }
+                        TitleViewModelImpl(item)
+                    }
+                    is BottomSheetSettings.ClickableItem -> {
+                        item.titleRes?.also { item.title = context.getString(it) }
+                        ClickableViewModelImpl(item, this)
+                    }
+                    is BottomSheetSettings.DividerItem -> DividerViewModelImpl(item)
+                    is BottomSheetSettings.CustomItem -> CustomItemViewModel(item, this)
+                    else -> throw IllegalArgumentException("`item` has unknown type")
                 }
             }
         }

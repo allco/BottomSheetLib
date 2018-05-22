@@ -5,7 +5,6 @@
     >
 
     <data>
-
         <variable
             name="model"
             type="com.allco.ui.bottomsheet.DividerViewModel"
@@ -16,8 +15,8 @@
         android:id="@+id/fr_bottom_sheet_divider"
         android:layout_width="match_parent"
         android:layout_height="@dimen/bottom_sheet_divider_height"
-        app:marginLeft="@{model.rightOffset}"
-        app:marginRight="@{model.rightOffset}"
+        app:marginLeft="@{safeUnbox(model.rightOffset)}"
+        app:marginRight="@{safeUnbox(model.rightOffset)}"
         android:layout_marginBottom="@dimen/bottom_sheet_padding_divider_bottom"
         android:layout_marginTop="@dimen/bottom_sheet_padding_divider_top"
         android:background="@color/bottom_sheet_divider_color_grey"

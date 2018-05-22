@@ -30,5 +30,13 @@
             android:onClick="runExample3"
             android:text="Example #3" />
 
+        <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:text="Example Yes/No"
+                android:onClick="runExampleYesNo"
+                />
+
     </LinearLayout>
 </layout>

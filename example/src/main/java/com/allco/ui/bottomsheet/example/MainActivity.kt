@@ -22,6 +22,21 @@ class MainActivity : AppCompatActivity() {
         DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
     }
 
+    @Suppress("UNUSED_PARAMETER")
+    fun runExampleYesNo(view: View) {
+        bottomSheet {
+            clickableItem {
+                titleRes = R.string.yes
+                onClicked = { toast(title.toString()) }
+            }
+            clickableItem {
+                titleRes = R.string.no
+                onClicked = { toast(title.toString()) }
+            }
+        }.show()
+    }
+
+    @Suppress("UNUSED_PARAMETER")
     fun runExample1(view: View) {
         bottomSheet {
             clickableItem {
@@ -47,6 +62,7 @@ class MainActivity : AppCompatActivity() {
         }.show()
     }
 
+    @Suppress("UNUSED_PARAMETER")
     fun runExample2(view: View) {
         bottomSheet {
             clickableItem {
@@ -83,7 +99,7 @@ class MainActivity : AppCompatActivity() {
         }.show()
     }
 
-
+    @Suppress("UNUSED_PARAMETER")
     fun runExample3(view: View) {
         bottomSheet {
             maxInitialHeightInPercents = 100
@@ -106,17 +122,19 @@ class MainActivity : AppCompatActivity() {
 
             custom {
                 layoutRes = R.layout.custom_layout
-                onBind = { binding, position, dialogInterface ->
+                onBind = { binding, _, dialogInterface ->
                     (binding as CustomLayoutBinding).apply {
                         //model = setup data accordingly `position`
-                        binding.ratingBar.setOnRatingBarChangeListener { ratingBar, rating, _ ->
-                            binding.root.setBackgroundColor(when {
-                                rating < 1 -> Color.RED.withAlpha(0x88)
-                                rating < 2 -> Color.MAGENTA.withAlpha(0x88)
-                                rating < 3 -> Color.YELLOW.withAlpha(0x88)
-                                rating < 4 -> Color.CYAN.withAlpha(0x88)
-                                else -> Color.GREEN.withAlpha(0x88)
-                            })
+                        binding.ratingBar.setOnRatingBarChangeListener { _, rating, _ ->
+                            binding.root.setBackgroundColor(
+                                when {
+                                    rating < 1 -> Color.RED.withAlpha(0x88)
+                                    rating < 2 -> Color.MAGENTA.withAlpha(0x88)
+                                    rating < 3 -> Color.YELLOW.withAlpha(0x88)
+                                    rating < 4 -> Color.CYAN.withAlpha(0x88)
+                                    else -> Color.GREEN.withAlpha(0x88)
+                                }
+                            )
                         }
                         button.setOnClickListener {
                             dialogInterface.dismiss()
