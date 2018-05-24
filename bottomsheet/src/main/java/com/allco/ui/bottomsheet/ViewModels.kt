@@ -21,6 +21,7 @@ interface ClickableViewModel {
     var iconDrawable: Drawable?
     var iconResTintColor: Int
     var iconRes: Int?
+    var textAppearanceRes: Int?
     var onClicked: (() -> Unit)?
 }
 

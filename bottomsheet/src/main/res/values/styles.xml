@@ -1,10 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <style name="BottomSheetLib" />
 
-    <style name="BottomSheetLib.Title" parent="TextAppearance.AppCompat.Title" />
+    <style name="BottomSheetLib.Title" />
 
-    <style name="BottomSheetLib.Title.DefaultTextAppearance">
+    <style name="BottomSheetLib.Title.DefaultTextAppearance" parent="TextAppearance.AppCompat.Title">
         <item name="android:textColor">@color/bottom_sheet_item_text_title</item>
     </style>
+
+    <style name="BottomSheetLib.ClickableItem" />
+
+    <style name="BottomSheetLib.ClickableItem.DefaultTextAppearance" parent="TextAppearance.AppCompat.Subhead">
+        <item name="android:textColor">@color/bottom_sheet_item_text</item>
+    </style>
+
 </resources>

@@ -124,6 +124,7 @@ class BottomSheetSettings {
      * @param iconResTintColor resource id of a color which will be used fot tinting [iconRes]
      * @param iconDrawable a [Drawable] which will be used as an icon overrides [iconRes]
      * @param onClicked an action which will be invoked is the user tapped the item
+     * @param textAppearanceRes a text appearance style resource for the [title]
      * @param dismissOnClick if `false` then the BottomSheet will not be dismissed automatically if the user tapped the item
      */
     data class ClickableItem(
@@ -134,6 +135,7 @@ class BottomSheetSettings {
         override var onClicked: (() -> Unit)? = null,
         @DrawableRes override var iconRes: Int? = null,
         @ColorRes override var iconResTintColor: Int = R.color.bottom_sheet_item_text_title,
+        @StyleRes override var textAppearanceRes: Int? = R.style.BottomSheetLib_ClickableItem_DefaultTextAppearance,
         var dismissOnClick: Boolean = true
     ) : Item, ClickableViewModel
 
