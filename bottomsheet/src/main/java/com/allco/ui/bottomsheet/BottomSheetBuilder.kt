@@ -8,6 +8,7 @@ import android.graphics.drawable.Drawable
 import android.support.annotation.ColorRes
 import android.support.annotation.DrawableRes
 import android.support.annotation.StringRes
+import android.support.annotation.StyleRes
 import android.support.v4.app.Fragment
 
 /**
@@ -86,17 +87,19 @@ class BottomSheetSettings {
 
     /**
      * Represents unclickable item with title
-     * @property title the text which will be shown as a title
+     * @param title the text which will be shown as a title
+     * @param textAppearanceRes a text appearance style resource for the title
      */
     data class TitleItem(
         override var title: String? = null,
-        @StringRes var titleRes: Int? = null
+        @StringRes var titleRes: Int? = null,
+        @StyleRes override var textAppearanceRes: Int? = R.style.BottomSheetLib_Title_DefaultTextAppearance
     ) : Item, TitleViewModel
 
     /**
      * Represents the horizontal line item aka divider
-     * @property leftOffset blank gap from left side in pixels
-     * @property rightOffset blank gap from right side in pixels
+     * @param leftOffset blank gap from left side in pixels
+     * @param rightOffset blank gap from right side in pixels
      */
     data class DividerItem(
         override var leftOffset: Int? = null,
@@ -105,8 +108,8 @@ class BottomSheetSettings {
 
     /**
      * Represents an item with custom layout
-     * @property layoutRes id of layout from resource
-     * @property onBind action which will be called every time when the [layoutRes] is supposed to be populated with actual data.
+     * @param layoutRes id of layout from resource
+     * @param onBind action which will be called every time when the [layoutRes] is supposed to be populated with actual data.
      */
     data class CustomItem(
         var layoutRes: Int? = null,
@@ -116,12 +119,12 @@ class BottomSheetSettings {
     /**
      * Represents an clickable item which can optionally can have a title and an icon.
      * The icon will be fitted in the 24dp x 24dp square.
-     * @property title the text of the item
-     * @property iconRes resource id of a drawable which is supposed to be used as as an icon
-     * @property iconResTintColor resource id of a color which will be used fot tinting [iconRes]
-     * @property iconDrawable a [Drawable] which will be used as an icon overrides [iconRes]
-     * @property onClicked an action which will be invoked is the user tapped the item
-     * @property dismissOnClick if `false` then the BottomSheet will not be dismissed automatically if the user tapped the item
+     * @param title the text of the item
+     * @param iconRes resource id of a drawable which is supposed to be used as as an icon
+     * @param iconResTintColor resource id of a color which will be used fot tinting [iconRes]
+     * @param iconDrawable a [Drawable] which will be used as an icon overrides [iconRes]
+     * @param onClicked an action which will be invoked is the user tapped the item
+     * @param dismissOnClick if `false` then the BottomSheet will not be dismissed automatically if the user tapped the item
      */
     data class ClickableItem(
         override var title: String? = null,

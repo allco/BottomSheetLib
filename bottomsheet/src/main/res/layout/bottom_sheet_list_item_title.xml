@@ -23,8 +23,7 @@
         android:paddingLeft="@dimen/bottom_sheet_padding_default"
         android:paddingRight="@dimen/bottom_sheet_padding_default"
         android:text="@{model.title}"
-        android:textAppearance="@style/TextAppearance.AppCompat.Title"
-        android:textColor="@color/bottom_sheet_item_text_title"
+        android:textAppearance="@{safeUnbox(model.textAppearanceRes)}"
         tools:text="Title"
 
         />
