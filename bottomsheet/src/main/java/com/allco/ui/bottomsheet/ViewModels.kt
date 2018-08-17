@@ -7,6 +7,7 @@ import com.allco.ui.recyclerView.ObserverBasedAdapter
 
 interface TitleViewModel {
     var title: String?
+    var textAppearanceRes: Int?
 }
 
 interface DividerViewModel {
@@ -20,10 +21,11 @@ interface ClickableViewModel {
     var iconDrawable: Drawable?
     var iconResTintColor: Int
     var iconRes: Int?
+    var textAppearanceRes: Int?
     var onClicked: (() -> Unit)?
 }
 
-class TitleViewModelImpl(data: BottomSheetSettings.TitleItem) : TitleViewModel by data, ObserverBasedAdapter.Item {
+class TitleViewModelImpl(val data: BottomSheetSettings.TitleItem) : TitleViewModel by data, ObserverBasedAdapter.Item {
     override val layout = R.layout.bottom_sheet_list_item_title
 }
 
