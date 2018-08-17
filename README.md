@@ -34,7 +34,28 @@ Step 2. Add the dependency
 The following examples was inspired by [Google's definition of BottomSheet](https://material.io/guidelines/components/bottom-sheets.html#bottom-sheets-specs).  
 
 ### #1
+Yes/No chooser
+
 <img src="doc/example1.png" alt="Example #1 image." width=400 /> 
+
+```kotlin
+    fun runExampleYesNo(view: View) {
+        bottomSheet {
+            clickableItem {
+                titleRes = R.string.yes
+                onClicked = { toast(title.toString()) }
+            }
+            clickableItem {
+                titleRes = R.string.no
+                onClicked = { toast(title.toString()) }
+            }
+        }.show()
+    }
+```
+
+
+### #2
+<img src="doc/example2.png" alt="Example #1 image." width=400 /> 
 
 ```kotlin
     fun runExample1(view: View) {
@@ -63,8 +84,8 @@ The following examples was inspired by [Google's definition of BottomSheet](http
     }
 ```
 
-### #2
-<img src="doc/example2.png" alt="Example #2 image." width=400 />
+### #3
+<img src="doc/example3.png" alt="Example #2 image." width=400 />
 
 ```kotlin
     fun runExample2(view: View) {
@@ -105,10 +126,10 @@ The following examples was inspired by [Google's definition of BottomSheet](http
 
 ``` 
 
-### #3
+### #4
 Custom items
 
-<img src="doc/example3.png" alt="Example #3 image." width=400 />
+<img src="doc/example4.png" alt="Example #3 image." width=400 />
 
 ```kotlin
     fun runExample3(view: View) {
