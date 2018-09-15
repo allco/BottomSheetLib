@@ -141,4 +141,3 @@ class BottomSheetSettings {
 
     internal val listItems = mutableListOf<Item>()
 }
-

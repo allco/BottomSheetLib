@@ -44,10 +44,10 @@ class CustomItemViewModel(private val data: BottomSheetSettings.CustomItem, priv
         }
 }
 
-
 class ClickableViewModelImpl(
-        private val data: BottomSheetSettings.ClickableItem,
-        private val dialog: DialogInterface)
+    private val data: BottomSheetSettings.ClickableItem,
+    private val dialog: DialogInterface
+)
     : ClickableViewModel by data, ObserverBasedAdapter.Item {
 
     override val layout = R.layout.bottom_sheet_list_item

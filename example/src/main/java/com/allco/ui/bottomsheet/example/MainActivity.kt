@@ -124,7 +124,7 @@ class MainActivity : AppCompatActivity() {
                 layoutRes = R.layout.custom_layout
                 onBind = { binding, _, dialogInterface ->
                     (binding as CustomLayoutBinding).apply {
-                        //model = setup data accordingly `position`
+                        // model = setup data accordingly `position`
                         binding.ratingBar.setOnRatingBarChangeListener { _, rating, _ ->
                             binding.root.setBackgroundColor(
                                 when {

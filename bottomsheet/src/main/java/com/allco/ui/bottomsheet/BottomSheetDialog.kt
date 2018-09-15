@@ -24,7 +24,7 @@ class BottomSheetDialog(context: Context) : android.support.design.widget.Bottom
         @Suppress("UNUSED_ANONYMOUS_PARAMETER")
         binding.root.addOnLayoutChangeListener { view, left, top, right, bottom, oldLeft, oldTop, oldRight, oldBottom ->
             val bottomSheet = findViewById<FrameLayout>(R.id.design_bottom_sheet)
-                    ?: throw IllegalStateException("R.id.design_bottom_sheet is not found")
+                ?: throw IllegalStateException("R.id.design_bottom_sheet is not found")
             bottomSheet.setBackgroundColor(Color.TRANSPARENT)
             val maxInitialHeight = (getScreenHeight() * settings.maxInitialHeightInPercents / 100f).roundToInt()
             BottomSheetBehavior.from(bottomSheet).apply { peekHeight = min(bottomSheet.height, maxInitialHeight) }
@@ -60,9 +60,8 @@ class BottomSheetDialog(context: Context) : android.support.design.widget.Bottom
 
     override fun onCreate(savedInstanceState: Bundle?) {
         // make statusBar translucent
-        val window = window
-        if (window != null && Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
+        window?.takeIf { Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT }?.apply {
+            addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
         }
         super.onCreate(savedInstanceState)
     }

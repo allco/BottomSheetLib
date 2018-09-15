@@ -112,4 +112,3 @@ private class TextViewPicassoTarget internal constructor(private val textView: T
     override fun onBitmapFailed(errorDrawable: Drawable) {}
     override fun onPrepareLoad(placeHolderDrawable: Drawable) {}
 }
-

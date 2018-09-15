@@ -18,7 +18,7 @@ open class ObserverBasedAdapter(private val data: ItemList) : RecyclerView.Adapt
         val layout: Int
         val binder: ((ViewDataBinding, Int) -> Unit)
             get() = { binding, _ ->
-                binding.setVariable(BR.model, Item@ this)
+                binding.setVariable(BR.model, this)
             }
     }
 
