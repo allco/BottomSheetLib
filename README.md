@@ -129,7 +129,7 @@ Yes/No chooser
 ### #4
 Custom items
 
-<img src="doc/example4.png" alt="Example #3 image." width=400 />
+<img src="doc/example4.png" alt="Example #4 image." width=400 />
 
 ```kotlin
     fun runExample3(view: View) {
@@ -158,6 +158,27 @@ Custom items
                        binding.model = ... // setup data accordingly `position`
                     }
                 }
+            }
+        }.show()
+    }
+```
+
+### #5
+Custom background
+
+<img src="doc/example5.png" alt="Custom backgroung image." width=400 />
+
+```kotlin
+    fun runExampleYesNo(view: View) {
+        backgroundRes = R.drawable.custom_bg    
+        bottomSheet {
+            clickableItem {
+                titleRes = R.string.yes
+                onClicked = { toast(title.toString()) }
+            }
+            clickableItem {
+                titleRes = R.string.no
+                onClicked = { toast(title.toString()) }
             }
         }.show()
     }
