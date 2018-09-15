@@ -92,13 +92,13 @@ Yes/No chooser
         bottomSheet {
             clickableItem {
                 title = "Document"
-                iconResTintColor = R.color.icon_document
+                tintColorRes = R.color.icon_document
                 iconRes = R.drawable.ic_insert_chart_black
                 onClicked = { toast(title.toString()) }
             }
             clickableItem {
                 title = "Spreadsheet"
-                iconResTintColor = R.color.icon_spreadsheet
+                tintColorRes = R.color.icon_spreadsheet
                 iconRes = R.drawable.ic_insert_photo
                 onClicked = { toast(title.toString()) }
             }

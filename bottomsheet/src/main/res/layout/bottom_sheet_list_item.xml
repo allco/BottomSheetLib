@@ -31,7 +31,7 @@
         android:textAppearance="@{safeUnbox(model.textAppearanceRes)}"
         bind:compatLeftDrawable="@{model.iconDrawable}"
         bind:compatLeftDrawableRes="@{model.iconRes}"
-        bind:compatLeftDrawableResTintColor="@{model.iconResTintColor}"
+        bind:compatLeftDrawableResTintColor="@{model.tintColorRes}"
         tools:text="Clickable item"
         />
 
