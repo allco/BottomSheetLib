@@ -44,6 +44,14 @@ class BottomSheetBuilder internal constructor(private val context: Context, priv
 class BottomSheetSettings {
 
     /**
+     * Defines background for the BottomSheet
+     */
+    @DrawableRes
+    var backgroundRes: Int? = null
+    @DrawableRes
+    var backgroundDrawable: Drawable? = null
+
+    /**
      * Creates a title item
      *  @param action an configuration action for the [TitleItem]
      */

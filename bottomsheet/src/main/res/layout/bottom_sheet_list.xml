@@ -7,14 +7,20 @@
         <variable
             name="items"
             type="com.allco.ui.recyclerView.ObserverBasedAdapter.ItemList" />
+
+        <variable
+            name="background"
+            type="android.graphics.drawable.Drawable"
+            />
     </data>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_bottom_sheet"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?android:attr/colorBackground"
+        android:background="@{background}"
         android:clipToPadding="false"
+        android:clickable="false"
         android:paddingBottom="@dimen/bottom_sheet_padding_bottom"
         android:paddingTop="@dimen/bottom_sheet_padding_bottom"
         bind:layoutManager="android.support.v7.widget.LinearLayoutManager"
