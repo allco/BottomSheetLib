@@ -48,7 +48,6 @@ class BottomSheetSettings {
      */
     @DrawableRes
     var backgroundRes: Int? = null
-    @DrawableRes
     var backgroundDrawable: Drawable? = null
 
     /**
@@ -129,7 +128,7 @@ class BottomSheetSettings {
      * The icon will be fitted in the 24dp x 24dp square.
      * @param title the text of the item
      * @param iconRes resource id of a drawable which is supposed to be used as as an icon
-     * @param iconResTintColor resource id of a color which will be used fot tinting [iconRes]
+     * @param tintColorRes resource id of a color which will be used fot tinting [iconRes]
      * @param iconDrawable a [Drawable] which will be used as an icon overrides [iconRes]
      * @param onClicked an action which will be invoked is the user tapped the item
      * @param textAppearanceRes a text appearance style resource for the [title]
@@ -142,7 +141,7 @@ class BottomSheetSettings {
         override var iconDrawable: Drawable? = null,
         override var onClicked: (() -> Unit)? = null,
         @DrawableRes override var iconRes: Int? = null,
-        @ColorRes override var iconResTintColor: Int = R.color.bottom_sheet_item_text_title,
+        @ColorRes override var tintColorRes: Int = R.color.bottom_sheet_item_text_title,
         @StyleRes override var textAppearanceRes: Int? = R.style.BottomSheetLib_ClickableItem_DefaultTextAppearance,
         var dismissOnClick: Boolean = true
     ) : Item, ClickableViewModel
