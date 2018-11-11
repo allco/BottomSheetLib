@@ -137,7 +137,6 @@ class BottomSheetSettings {
     data class ClickableItem(
         override var title: String? = null,
         @StringRes var titleRes: Int? = null,
-        override var iconUrl: String? = null,
         override var iconDrawable: Drawable? = null,
         override var onClicked: (() -> Unit)? = null,
         @DrawableRes override var iconRes: Int? = null,

@@ -17,7 +17,6 @@ interface DividerViewModel {
 
 interface ClickableViewModel {
     var title: String?
-    var iconUrl: String?
     var iconDrawable: Drawable?
     var tintColorRes: Int
     var iconRes: Int?
@@ -29,14 +28,16 @@ class TitleViewModelImpl(val data: BottomSheetSettings.TitleItem) : TitleViewMod
     override val layout = R.layout.bottom_sheet_list_item_title
 }
 
-class DividerViewModelImpl(data: BottomSheetSettings.DividerItem) : DividerViewModel by data, ObserverBasedAdapter.Item {
+class DividerViewModelImpl(data: BottomSheetSettings.DividerItem) : DividerViewModel by data,
+    ObserverBasedAdapter.Item {
     override val layout = R.layout.bottom_sheet_list_item_divider
 }
 
-class CustomItemViewModel(private val data: BottomSheetSettings.CustomItem, private val dialog: DialogInterface) : ObserverBasedAdapter.Item {
+class CustomItemViewModel(private val data: BottomSheetSettings.CustomItem, private val dialog: DialogInterface) :
+    ObserverBasedAdapter.Item {
     override val layout: Int
         get() = data.layoutRes
-                ?: throw IllegalStateException("`layout` property is required for 'custom{}' item")
+            ?: throw IllegalStateException("`layout` property is required for 'custom{}' item")
 
     override val binder: ((ViewDataBinding, Int) -> Unit)
         get() = { binding, position ->
