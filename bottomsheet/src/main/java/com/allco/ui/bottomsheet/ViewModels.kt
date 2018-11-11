@@ -3,7 +3,7 @@ package com.allco.ui.bottomsheet
 import android.content.DialogInterface
 import android.databinding.ViewDataBinding
 import android.graphics.drawable.Drawable
-import com.allco.ui.recyclerView.ObserverBasedAdapter
+import com.allco.ui.bottomsheet.utils.ObserverBasedAdapter
 
 interface TitleViewModel {
     var title: String?
@@ -47,8 +47,7 @@ class CustomItemViewModel(private val data: BottomSheetSettings.CustomItem, priv
 class ClickableViewModelImpl(
     private val data: BottomSheetSettings.ClickableItem,
     private val dialog: DialogInterface
-)
-    : ClickableViewModel by data, ObserverBasedAdapter.Item {
+) : ClickableViewModel by data, ObserverBasedAdapter.Item {
 
     override val layout = R.layout.bottom_sheet_list_item
 

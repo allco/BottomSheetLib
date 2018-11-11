@@ -23,42 +23,12 @@ class MainActivity : AppCompatActivity() {
     }
 
     @Suppress("UNUSED_PARAMETER")
-    fun runExampleYesNoCustomBg(view: View) {
-        bottomSheet {
-            backgroundRes = R.drawable.custom_bg
-            // Or as an alternative use the following:
-            // backgroundDrawable = AppCompatResources.getDrawable(view.context, R.drawable.custom_bg)
-            clickableItem {
-                titleRes = R.string.yes
-                onClicked = { toast(title.toString()) }
-            }
-            clickableItem {
-                titleRes = R.string.no
-                onClicked = { toast(title.toString()) }
-            }
-        }.show()
-    }
-
-    @Suppress("UNUSED_PARAMETER")
-    fun runExampleYesNo(view: View) {
-        bottomSheet {
-            clickableItem {
-                titleRes = R.string.yes
-                onClicked = { toast(title.toString()) }
-            }
-            clickableItem {
-                titleRes = R.string.no
-                onClicked = { toast(title.toString()) }
-            }
-        }.show()
-    }
-
-    @Suppress("UNUSED_PARAMETER")
     fun runExample1(view: View) {
         bottomSheet {
             clickableItem {
                 title = "Share"
                 iconRes = R.drawable.ic_share_black
+                textAppearanceRes = R.style.BottomSheetClickableItemTextAppearance
                 onClicked = { toast(title.toString()) }
             }
             clickableItem {
@@ -158,6 +128,37 @@ class MainActivity : AppCompatActivity() {
                         }
                     }
                 }
+            }
+        }.show()
+    }
+
+    @Suppress("UNUSED_PARAMETER")
+    fun runExampleYesNo(view: View) {
+        bottomSheet {
+            clickableItem {
+                titleRes = R.string.yes
+                onClicked = { toast(title.toString()) }
+            }
+            clickableItem {
+                titleRes = R.string.no
+                onClicked = { toast(title.toString()) }
+            }
+        }.show()
+    }
+
+    @Suppress("UNUSED_PARAMETER")
+    fun runExampleYesNoCustomBg(view: View) {
+        bottomSheet {
+            backgroundRes = R.drawable.custom_bg
+            // Or as an alternative use the following:
+            // backgroundDrawable = AppCompatResources.getDrawable(view.context, R.drawable.custom_bg)
+            clickableItem {
+                titleRes = R.string.yes
+                onClicked = { toast(title.toString()) }
+            }
+            clickableItem {
+                titleRes = R.string.no
+                onClicked = { toast(title.toString()) }
             }
         }.show()
     }

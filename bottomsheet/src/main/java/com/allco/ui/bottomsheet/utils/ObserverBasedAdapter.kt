@@ -1,4 +1,4 @@
-package com.allco.ui.recyclerView
+package com.allco.ui.bottomsheet.utils
 
 import android.databinding.DataBindingUtil
 import android.databinding.ObservableArrayList
@@ -9,7 +9,8 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.allco.ui.bottomsheet.BR
 
-open class ObserverBasedAdapter(private val data: ItemList) : RecyclerView.Adapter<ObserverBasedAdapter.ViewHolder>() {
+open class ObserverBasedAdapter constructor(private val data: ItemList) :
+    RecyclerView.Adapter<ObserverBasedAdapter.ViewHolder>() {
 
     class ItemList : ObservableArrayList<Item>()
 
@@ -32,9 +33,8 @@ open class ObserverBasedAdapter(private val data: ItemList) : RecyclerView.Adapt
         })
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        return ViewHolder(DataBindingUtil.inflate(LayoutInflater.from(parent.context), viewType, parent, false))
-    }
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder =
+        ViewHolder(DataBindingUtil.inflate(LayoutInflater.from(parent.context), viewType, parent, false))
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         data[position].binder(holder.binding, position)

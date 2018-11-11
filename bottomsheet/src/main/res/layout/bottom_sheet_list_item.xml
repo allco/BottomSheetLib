@@ -6,6 +6,11 @@
     >
 
     <data>
+
+        <import type="com.allco.ui.bottomsheet.R"/>
+
+        <import type="com.allco.ui.bottomsheet.utils.StyleHelperKt"/>
+
         <variable
             name="model"
             type="com.allco.ui.bottomsheet.ClickableViewModel"
@@ -16,23 +21,24 @@
         android:id="@+id/bottom_sheet_item_title"
         android:layout_width="match_parent"
         android:layout_height="@dimen/bottom_sheet_text_height"
-        android:background="?android:attr/selectableItemBackground"
+        android:background="?attr/bslItemClickableBackground"
         android:clickable="true"
         android:contentDescription="@{model.title}"
-        android:drawablePadding="@dimen/bottom_sheet_padding_double"
+        android:drawablePadding="?attr/bslItemClickablePaddingIcon"
         android:ellipsize="end"
         android:focusable="true"
         android:gravity="start|center"
         android:maxLines="1"
         android:onClick="@{v->model.onClicked.invoke()}"
-        android:paddingLeft="@dimen/bottom_sheet_padding_default"
-        android:paddingRight="@dimen/bottom_sheet_padding_default"
+        android:paddingLeft="?attr/bslItemClickablePaddingLeft"
+        android:paddingRight="?attr/bslItemClickablePaddingRight"
         android:text="@{model.title}"
-        android:textAppearance="@{safeUnbox(model.textAppearanceRes)}"
-        bind:compatLeftDrawable="@{model.iconDrawable}"
-        bind:compatLeftDrawableRes="@{model.iconRes}"
-        bind:compatLeftDrawableResTintColor="@{model.tintColorRes}"
-        tools:text="Clickable item"
+        bind:bslCompatLeftDrawable="@{model.iconDrawable}"
+        bind:bslCompatLeftDrawableRes="@{model.iconRes}"
+        bind:bslCompatLeftDrawableResTintColor="@{model.tintColorRes}"
+        bind:bslTextAppearanceStyle="@{model.textAppearanceRes}"
+        bind:bslTextAppearanceAttr="@{R.attr.bslItemClickableTextAppearance}"
+        tools:text="@tools:sample/lorem[9]"
         />
 
 </layout>

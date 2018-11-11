@@ -142,7 +142,7 @@ class BottomSheetSettings {
         override var onClicked: (() -> Unit)? = null,
         @DrawableRes override var iconRes: Int? = null,
         @ColorRes override var tintColorRes: Int = R.color.bottom_sheet_item_text_title,
-        @StyleRes override var textAppearanceRes: Int? = R.style.BottomSheetLib_ClickableItem_DefaultTextAppearance,
+        @StyleRes override var textAppearanceRes: Int? = null,
         var dismissOnClick: Boolean = true
     ) : Item, ClickableViewModel
 

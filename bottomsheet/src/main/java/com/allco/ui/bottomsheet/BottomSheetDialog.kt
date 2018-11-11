@@ -3,38 +3,26 @@ package com.allco.ui.bottomsheet
 import android.content.Context
 import android.content.res.Resources
 import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import android.os.Build
 import android.os.Bundle
-import android.support.design.R
 import android.support.design.widget.BottomSheetBehavior
-import android.util.TypedValue
+import android.support.v7.view.ContextThemeWrapper
 import android.view.WindowManager
 import android.widget.FrameLayout
 import com.allco.ui.bottomsheet.databinding.BottomSheetListBinding
-import com.allco.ui.recyclerView.ObserverBasedAdapter
+import com.allco.ui.bottomsheet.utils.ObserverBasedAdapter
+import com.allco.ui.bottomsheet.utils.getStyleRes
 import kotlin.math.min
 import kotlin.math.roundToInt
 
-class BottomSheetDialog(context: Context) : android.support.design.widget.BottomSheetDialog(context) {
+class BottomSheetDialog(context: Context) : android.support.design.widget.BottomSheetDialog(
+    ContextThemeWrapper(context, context.getStyleRes(R.attr.bottomSheetLibStyle, R.style.BottomSheetLib))
+) {
 
     internal fun init(settings: BottomSheetSettings) {
         val binding = BottomSheetListBinding.inflate(layoutInflater)
         binding.items = convertToViewModelList(settings)
         binding.background = settings.backgroundDrawable
-            ?: getDrawable(settings.backgroundRes)
-            ?: run {
-            // Get default the theme's background
-            val attr = TypedValue()
-            context.theme.resolveAttribute(android.R.attr.colorBackground, attr, true)
-            if (attr.type >= TypedValue.TYPE_FIRST_COLOR_INT && attr.type <= TypedValue.TYPE_LAST_COLOR_INT) {
-                // colorBackground is a color
-                ColorDrawable(attr.data)
-            } else {
-                // colorBackground is not a color, probably a drawable
-                getDrawable(attr.resourceId)
-            }
-        }
 
         setContentView(binding.root)
 
@@ -47,7 +35,7 @@ class BottomSheetDialog(context: Context) : android.support.design.widget.Bottom
             BottomSheetBehavior.from(bottomSheet).apply { peekHeight = min(bottomSheet.height, maxInitialHeight) }
         }
 
-        setOnCancelListener { _ -> settings.onCanceled?.invoke() }
+        setOnCancelListener { settings.onCanceled?.invoke() }
     }
 
     private fun convertToViewModelList(settings: BottomSheetSettings): ObserverBasedAdapter.ItemList {

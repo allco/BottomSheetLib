@@ -6,6 +6,20 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <!-- Uncomment this to apply the style -->
+        <!--<item name="bottomSheetLibStyle">@style/BottomSheetLib.Round</item>-->
+    </style>
+
+    <style name="BottomSheetLib.Round">
+        <item name="bslPaneBackground">@drawable/custom_bg</item>
+        <item name="bslPanePaddingTop">0dp</item>
+        <item name="bslPanePaddingBottom">0dp</item>
+        <item name="bslItemClickableTextAppearance">@style/BottomSheetClickableItemTextAppearance</item>
+    </style>
+
+    <style name="BottomSheetClickableItemTextAppearance"
+           parent="BottomSheetLib.ClickableItem.DefaultTextAppearance">
+        <item name="android:textColor">#FF00FF</item>
     </style>
 
 </resources>

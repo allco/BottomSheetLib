@@ -1,4 +1,4 @@
-package com.allco.ui.recyclerView
+package com.allco.ui.bottomsheet.utils
 
 import android.databinding.BindingAdapter
 import android.graphics.Bitmap
@@ -6,11 +6,14 @@ import android.graphics.Color
 import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.Drawable
+import android.support.annotation.AttrRes
 import android.support.annotation.ColorRes
 import android.support.annotation.DrawableRes
+import android.support.annotation.StyleRes
 import android.support.graphics.drawable.VectorDrawableCompat
 import android.support.v4.content.ContextCompat
 import android.support.v4.graphics.drawable.DrawableCompat
+import android.support.v4.widget.TextViewCompat
 import android.support.v7.widget.RecyclerView
 import android.text.TextUtils.isEmpty
 import android.util.Log
@@ -19,9 +22,22 @@ import android.view.ViewGroup
 import android.widget.TextView
 import com.squareup.picasso.Picasso
 
-@BindingAdapter(value = ["listItems"])
+@BindingAdapter(value = ["bslListItems"])
 fun setRecyclerViewItems(recyclerView: RecyclerView, listItems: ObserverBasedAdapter.ItemList) {
     recyclerView.adapter = ObserverBasedAdapter(listItems)
+}
+
+@BindingAdapter(value = ["bslTextAppearanceStyle", "bslTextAppearanceAttr"], requireAll = false)
+fun bslTextAppearance(textView: TextView, @StyleRes styleRes: Int?, @AttrRes attrRef: Int?) {
+    (styleRes ?: attrRef?.let { attr -> resolveTextAppearanceAttr(textView.context, attr, -1).takeIf { it != -1 } })
+        ?.also { style ->
+            TextViewCompat.setTextAppearance(textView, style)
+        }
+}
+
+@BindingAdapter(value = ["bslBackgroundDrawable", "bslBackgroundAttr"], requireAll = false)
+fun bslBackground(view: View, drawable: Drawable?, @AttrRes drawableAttrRef: Int) {
+    (drawable ?: view.context.getDrawableByAttr(drawableAttrRef))?.also { view.background = it }
 }
 
 @BindingAdapter(value = ["marginLeft", "marginRight"], requireAll = false)
@@ -33,15 +49,15 @@ fun setParentLayoutLeftMargins(view: View, leftMargin: Int, rightMargin: Int) {
     }
 }
 
-@BindingAdapter(value = ["compatLeftDrawableRes", "compatLeftDrawableResTintColor"], requireAll = false)
-fun setCompoundDrawableRes(view: TextView, @DrawableRes drawableLeftRes: Int?, @ColorRes colorTintLeft: Int?) {
+@BindingAdapter(value = ["bslCompatLeftDrawableRes", "bslCompatLeftDrawableResTintColor"], requireAll = false)
+fun bslCompatLeftDrawableRes(view: TextView, @DrawableRes drawableLeftRes: Int?, @ColorRes colorTintLeft: Int?) {
     modifyDrawable(view, drawableLeftRes, colorTintLeft)?.also {
         view.setCompoundDrawablesWithIntrinsicBounds(it, null, null, null)
     }
 }
 
-@BindingAdapter(value = ["compatLeftDrawable"], requireAll = false)
-fun setCompoundDrawable(view: TextView, drawableLeftRes: Drawable?) {
+@BindingAdapter(value = ["bslCompatLeftDrawable"], requireAll = false)
+fun bslCompatLeftDrawable(view: TextView, drawableLeftRes: Drawable?) {
     drawableLeftRes?.also {
         view.setCompoundDrawablesWithIntrinsicBounds(it, null, null, null)
     }
@@ -58,7 +74,7 @@ private fun modifyDrawable(view: TextView, @DrawableRes drawableRes: Int?, @Colo
     }
 }
 
-@BindingAdapter(value = ["compatLeftDrawableUrl", "compatLeftDrawableUrlSize"], requireAll = false)
+@BindingAdapter(value = ["bslCompatLeftDrawableUrl", "bslCompatLeftDrawableUrlSize"], requireAll = false)
 fun loadImageUrlDrawableLeft(textView: TextView, imageUrlDrawableLeft: String?, floatImageUrlSize: Float?) {
 
     if (isEmpty(imageUrlDrawableLeft)) {
