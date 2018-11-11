@@ -9,8 +9,6 @@
 
         <import type="com.allco.ui.bottomsheet.R"/>
 
-        <import type="com.allco.ui.bottomsheet.utils.StyleHelperKt"/>
-
         <variable
             name="model"
             type="com.allco.ui.bottomsheet.ClickableViewModel"
@@ -30,8 +28,8 @@
         android:gravity="start|center"
         android:maxLines="1"
         android:onClick="@{v->model.onClicked.invoke()}"
-        android:paddingLeft="?attr/bslItemClickablePaddingLeft"
-        android:paddingRight="?attr/bslItemClickablePaddingRight"
+        android:paddingStart="?attr/bslItemClickablePaddingLeft"
+        android:paddingEnd="?attr/bslItemClickablePaddingRight"
         android:text="@{model.title}"
         bind:bslCompatLeftDrawable="@{model.iconDrawable}"
         bind:bslCompatLeftDrawableRes="@{model.iconRes}"
