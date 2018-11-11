@@ -9,6 +9,7 @@
               format="dimension"/>
         <attr name="bslPanePaddingBottom"
               format="dimension"/>
+        <attr name="bslItemClickableHeight"/>
         <attr name="bslItemClickableBackground"/>
         <attr name="bslItemClickableTextAppearance"/>
         <attr name="bslItemClickablePaddingIcon"/>

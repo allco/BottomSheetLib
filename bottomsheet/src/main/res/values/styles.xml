@@ -5,6 +5,7 @@
         <item name="bslPaneBackground">?android:attr/colorBackground</item>
         <item name="bslPanePaddingTop">@dimen/bottom_sheet_padding_bottom</item>
         <item name="bslPanePaddingBottom">@dimen/bottom_sheet_padding_bottom</item>
+        <item name="bslItemClickableHeight">@dimen/bottom_sheet_text_height</item>
         <item name="bslItemClickableBackground">?android:attr/selectableItemBackground</item>
         <item name="bslItemClickableTextAppearance">@style/BottomSheetLib.ClickableItem.DefaultTextAppearance</item>
         <item name="bslItemClickablePaddingIcon">@dimen/bottom_sheet_padding_double</item>
@@ -12,14 +13,10 @@
         <item name="bslItemClickablePaddingLeft">@dimen/bottom_sheet_padding_default</item>
     </style>
 
-    <style name="BottomSheetLib.Title"/>
-
     <style name="BottomSheetLib.Title.DefaultTextAppearance"
            parent="TextAppearance.AppCompat.Title">
         <item name="android:textColor">@color/bottom_sheet_item_text_title</item>
     </style>
-
-    <style name="BottomSheetLib.ClickableItem"/>
 
     <style name="BottomSheetLib.ClickableItem.DefaultTextAppearance"
            parent="TextAppearance.AppCompat.Subhead">
