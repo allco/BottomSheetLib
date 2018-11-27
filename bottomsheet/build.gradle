@@ -8,7 +8,6 @@ group = 'com.github.allco'
 
 android {
     compileSdkVersion 28
-    buildToolsVersion "28.0.2"
 
     defaultConfig {
         minSdkVersion 19
