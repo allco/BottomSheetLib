@@ -16,7 +16,7 @@
         android:id="@+id/bottom_sheet_item_title"
         android:layout_width="match_parent"
         android:layout_height="@dimen/bottom_sheet_text_height"
-        android:background="?android:attr/selectableItemBackground"
+        android:background="?attr/selectableItemBackground"
         android:clickable="true"
         android:contentDescription="@{model.title}"
         android:drawablePadding="@dimen/bottom_sheet_padding_double"

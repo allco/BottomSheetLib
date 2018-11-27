@@ -6,17 +6,18 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Build
 import android.os.Bundle
-import android.support.design.R
-import android.support.design.widget.BottomSheetBehavior
+import com.google.android.material.R
+import com.google.android.material.bottomsheet.BottomSheetBehavior
 import android.util.TypedValue
 import android.view.WindowManager
 import android.widget.FrameLayout
 import com.allco.ui.bottomsheet.databinding.BottomSheetListBinding
 import com.allco.ui.recyclerView.ObserverBasedAdapter
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import kotlin.math.min
 import kotlin.math.roundToInt
 
-class BottomSheetDialog(context: Context) : android.support.design.widget.BottomSheetDialog(context) {
+class BottomSheetDialog(context: Context) : BottomSheetDialog(context) {
 
     internal fun init(settings: BottomSheetSettings) {
         val binding = BottomSheetListBinding.inflate(layoutInflater)
