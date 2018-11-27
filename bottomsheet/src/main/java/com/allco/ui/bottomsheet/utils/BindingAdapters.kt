@@ -33,11 +33,11 @@ fun bslBackground(view: View, drawable: Drawable?, @AttrRes drawableAttrRef: Int
     (drawable ?: view.context.getDrawableByAttr(drawableAttrRef))?.also { view.background = it }
 }
 
-@BindingAdapter(value = ["marginLeft", "marginRight"], requireAll = false)
-fun setParentLayoutLeftMargins(view: View, leftMargin: Int, rightMargin: Int) {
+@BindingAdapter(value = ["bslMarginLeft", "bslMarginRight"], requireAll = false)
+fun setParentLayoutLeftMargins(view: View, leftMargin: Int?, rightMargin: Int?) {
     (view.layoutParams as? ViewGroup.MarginLayoutParams)?.also { lp ->
-        leftMargin.also { lp.leftMargin = it }
-        rightMargin.also { lp.rightMargin = it }
+        leftMargin?.also { lp.leftMargin = it }
+        rightMargin?.also { lp.rightMargin = it }
         view.parent?.requestLayout()
     }
 }

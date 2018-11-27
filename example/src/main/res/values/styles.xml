@@ -6,7 +6,7 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <!-- Uncomment this to apply the style -->
+        <!-- Uncomment this to apply the custom BottomSheet style -->
         <!--<item name="bottomSheetLibStyle">@style/BottomSheetLib.Round</item>-->
     </style>
 

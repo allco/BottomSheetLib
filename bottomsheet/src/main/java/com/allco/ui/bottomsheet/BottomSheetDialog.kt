@@ -11,6 +11,7 @@ import android.view.WindowManager
 import android.widget.FrameLayout
 import com.allco.ui.bottomsheet.databinding.BottomSheetListBinding
 import com.allco.ui.bottomsheet.utils.ObserverBasedAdapter
+import com.allco.ui.bottomsheet.utils.getDrawableCompat
 import com.allco.ui.bottomsheet.utils.getStyleRes
 import kotlin.math.min
 import kotlin.math.roundToInt
@@ -22,7 +23,8 @@ class BottomSheetDialog(context: Context) : android.support.design.widget.Bottom
     internal fun init(settings: BottomSheetSettings) {
         val binding = BottomSheetListBinding.inflate(layoutInflater)
         binding.items = convertToViewModelList(settings)
-        binding.background = settings.backgroundDrawable
+        binding.background =
+            settings.backgroundDrawable ?: settings.backgroundRes?.let { context.getDrawableCompat(it) }
 
         setContentView(binding.root)
 

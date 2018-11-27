@@ -53,4 +53,3 @@ fun resolveTextAppearanceAttr(context: Context, @AttrRes styleAttrRef: Int, @Sty
         styleAttrRef,
         defaultStyleRes
     )
-
