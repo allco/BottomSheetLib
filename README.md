@@ -170,8 +170,8 @@ Custom background
 
 ```kotlin
     fun runExampleYesNo(view: View) {
-        backgroundRes = R.drawable.custom_bg    
         bottomSheet {
+            backgroundRes = R.drawable.custom_bg    
             clickableItem {
                 titleRes = R.string.yes
                 onClicked = { toast(title.toString()) }

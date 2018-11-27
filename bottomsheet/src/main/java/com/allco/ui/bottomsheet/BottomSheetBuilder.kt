@@ -3,13 +3,13 @@ package com.allco.ui.bottomsheet
 import android.app.Activity
 import android.content.Context
 import android.content.DialogInterface
-import android.databinding.ViewDataBinding
+import androidx.databinding.ViewDataBinding
 import android.graphics.drawable.Drawable
-import android.support.annotation.ColorRes
-import android.support.annotation.DrawableRes
-import android.support.annotation.StringRes
-import android.support.annotation.StyleRes
-import android.support.v4.app.Fragment
+import androidx.annotation.ColorRes
+import androidx.annotation.DrawableRes
+import androidx.annotation.StringRes
+import androidx.annotation.StyleRes
+import androidx.fragment.app.Fragment
 
 /**
  * Creates [BottomSheetBuilder]

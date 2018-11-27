@@ -5,18 +5,18 @@ import android.content.res.Resources
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
-import android.support.design.widget.BottomSheetBehavior
-import android.support.v7.view.ContextThemeWrapper
+import com.google.android.material.R
+import com.google.android.material.bottomsheet.BottomSheetBehavior
+import android.util.TypedValue
 import android.view.WindowManager
 import android.widget.FrameLayout
 import com.allco.ui.bottomsheet.databinding.BottomSheetListBinding
-import com.allco.ui.bottomsheet.utils.ObserverBasedAdapter
-import com.allco.ui.bottomsheet.utils.getDrawableCompat
-import com.allco.ui.bottomsheet.utils.getStyleRes
+import com.allco.ui.recyclerView.ObserverBasedAdapter
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import kotlin.math.min
 import kotlin.math.roundToInt
 
-class BottomSheetDialog(context: Context) : android.support.design.widget.BottomSheetDialog(
+class BottomSheetDialog(context: Context) : BottomSheetDialog(
     ContextThemeWrapper(context, context.getStyleRes(R.attr.bottomSheetLibStyle, R.style.BottomSheetLib))
 ) {
 

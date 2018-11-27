@@ -1,10 +1,10 @@
 package com.allco.ui.bottomsheet.example
 
-import android.databinding.DataBindingUtil
+import androidx.databinding.DataBindingUtil
 import android.graphics.Color
 import android.os.Bundle
-import android.support.v4.content.res.ResourcesCompat
-import android.support.v7.app.AppCompatActivity
+import androidx.core.content.res.ResourcesCompat
+import androidx.appcompat.app.AppCompatActivity
 import android.view.View
 import com.allco.ui.bottomsheet.bottomSheet
 import com.allco.ui.bottomsheet.example.databinding.ActivityMainBinding
