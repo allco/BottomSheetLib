@@ -1,19 +1,19 @@
 package com.allco.ui.bottomsheet.utils
 
-import android.databinding.BindingAdapter
 import android.graphics.drawable.Drawable
-import android.support.annotation.AttrRes
-import android.support.annotation.ColorRes
-import android.support.annotation.DrawableRes
-import android.support.annotation.StyleRes
-import android.support.graphics.drawable.VectorDrawableCompat
-import android.support.v4.content.ContextCompat
-import android.support.v4.graphics.drawable.DrawableCompat
-import android.support.v4.widget.TextViewCompat
-import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.annotation.AttrRes
+import androidx.annotation.ColorRes
+import androidx.annotation.DrawableRes
+import androidx.annotation.StyleRes
+import androidx.core.content.ContextCompat
+import androidx.core.graphics.drawable.DrawableCompat
+import androidx.core.widget.TextViewCompat
+import androidx.databinding.BindingAdapter
+import androidx.recyclerview.widget.RecyclerView
+import androidx.vectordrawable.graphics.drawable.VectorDrawableCompat
 
 @BindingAdapter(value = ["bslListItems"])
 fun setRecyclerViewItems(recyclerView: RecyclerView, listItems: ObserverBasedAdapter.ItemList) {

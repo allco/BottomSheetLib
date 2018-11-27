@@ -28,7 +28,7 @@
         android:clickable="false"
         android:paddingBottom="?attr/bslPanePaddingBottom"
         android:paddingTop="?attr/bslPanePaddingTop"
-        app:layoutManager="android.support.v7.widget.LinearLayoutManager"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         bind:bslListItems="@{items}"
         bind:bslBackgroundDrawable="@{background}"
         bind:bslBackgroundAttr="@{R.attr.bslPaneBackground}"
