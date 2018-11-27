@@ -14,7 +14,7 @@
             />
     </data>
 
-    <android.support.v7.widget.RecyclerView
+    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_bottom_sheet"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -23,7 +23,7 @@
         android:clickable="false"
         android:paddingBottom="@dimen/bottom_sheet_padding_bottom"
         android:paddingTop="@dimen/bottom_sheet_padding_bottom"
-        bind:layoutManager="android.support.v7.widget.LinearLayoutManager"
+        bind:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         bind:listItems="@{items}" />
 
 </layout>

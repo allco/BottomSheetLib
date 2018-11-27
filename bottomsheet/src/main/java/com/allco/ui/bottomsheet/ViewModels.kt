@@ -1,7 +1,7 @@
 package com.allco.ui.bottomsheet
 
 import android.content.DialogInterface
-import android.databinding.ViewDataBinding
+import androidx.databinding.ViewDataBinding
 import android.graphics.drawable.Drawable
 import com.allco.ui.recyclerView.ObserverBasedAdapter
 

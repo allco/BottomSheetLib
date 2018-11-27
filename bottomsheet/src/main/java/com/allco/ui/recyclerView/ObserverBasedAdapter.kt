@@ -1,12 +1,13 @@
 package com.allco.ui.recyclerView
 
-import android.databinding.DataBindingUtil
-import android.databinding.ObservableArrayList
-import android.databinding.ViewDataBinding
-import android.support.annotation.LayoutRes
-import android.support.v7.widget.RecyclerView
+import androidx.databinding.DataBindingUtil
+import androidx.databinding.ObservableArrayList
+import androidx.databinding.ViewDataBinding
+import androidx.annotation.LayoutRes
+import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.databinding.ObservableList
 import com.allco.ui.bottomsheet.BR
 
 open class ObserverBasedAdapter(private val data: ItemList) : RecyclerView.Adapter<ObserverBasedAdapter.ViewHolder>() {
@@ -23,7 +24,7 @@ open class ObserverBasedAdapter(private val data: ItemList) : RecyclerView.Adapt
     }
 
     init {
-        data.addOnListChangedCallback(object : android.databinding.ObservableList.OnListChangedCallback<ItemList>() {
+        data.addOnListChangedCallback(object : ObservableList.OnListChangedCallback<ItemList>() {
             override fun onChanged(sender: ItemList?) = notifyDataSetChanged()
             override fun onItemRangeRemoved(sender: ItemList?, positionStart: Int, itemCount: Int) = notifyItemRangeRemoved(positionStart, itemCount)
             override fun onItemRangeMoved(sender: ItemList?, fromPosition: Int, toPosition: Int, itemCount: Int) = notifyDataSetChanged()

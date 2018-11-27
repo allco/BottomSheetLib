@@ -1,23 +1,24 @@
 package com.allco.ui.recyclerView
 
-import android.databinding.BindingAdapter
+import androidx.databinding.BindingAdapter
 import android.graphics.Bitmap
 import android.graphics.Color
 import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.Drawable
-import android.support.annotation.ColorRes
-import android.support.annotation.DrawableRes
-import android.support.graphics.drawable.VectorDrawableCompat
-import android.support.v4.content.ContextCompat
-import android.support.v4.graphics.drawable.DrawableCompat
-import android.support.v7.widget.RecyclerView
+import androidx.annotation.ColorRes
+import androidx.annotation.DrawableRes
+import androidx.vectordrawable.graphics.drawable.VectorDrawableCompat
+import androidx.core.content.ContextCompat
+import androidx.core.graphics.drawable.DrawableCompat
+import androidx.recyclerview.widget.RecyclerView
 import android.text.TextUtils.isEmpty
 import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import com.squareup.picasso.Picasso
+import com.squareup.picasso.Target
 
 @BindingAdapter(value = ["listItems"])
 fun setRecyclerViewItems(recyclerView: RecyclerView, listItems: ObserverBasedAdapter.ItemList) {
@@ -102,7 +103,7 @@ fun loadImageUrlDrawableLeft(textView: TextView, imageUrlDrawableLeft: String?, 
     }
 }
 
-private class TextViewPicassoTarget internal constructor(private val textView: TextView) : com.squareup.picasso.Target {
+private class TextViewPicassoTarget internal constructor(private val textView: TextView) : Target {
     override fun onBitmapLoaded(bitmap: Bitmap, from: Picasso.LoadedFrom) {
         val drawable = BitmapDrawable(textView.resources, bitmap)
         drawable.setBounds(0, 0, bitmap.width, bitmap.height)
