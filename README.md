@@ -184,6 +184,10 @@ Custom background
     }
 ```
 
+# How to style with style attributes
+
+TBD
+
 # How to use
 
 1. Call `bottomSheet(...)` on an Activity or Fragment in order to get the `BottomSheetBuilder`.
