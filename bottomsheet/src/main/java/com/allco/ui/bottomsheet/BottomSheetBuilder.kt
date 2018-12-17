@@ -3,12 +3,12 @@ package com.allco.ui.bottomsheet
 import android.app.Activity
 import android.content.Context
 import android.content.DialogInterface
-import androidx.databinding.ViewDataBinding
 import android.graphics.drawable.Drawable
 import androidx.annotation.ColorRes
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.annotation.StyleRes
+import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 
 /**
@@ -100,7 +100,7 @@ class BottomSheetSettings {
     data class TitleItem(
         override var title: String? = null,
         @StringRes var titleRes: Int? = null,
-        @StyleRes override var textAppearanceRes: Int? = R.style.BottomSheetLib_Title_DefaultTextAppearance
+        @StyleRes override var textAppearanceRes: Int? = null
     ) : Item, TitleViewModel
 
     /**

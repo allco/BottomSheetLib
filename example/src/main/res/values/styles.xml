@@ -15,11 +15,17 @@
         <item name="bslPanePaddingTop">0dp</item>
         <item name="bslPanePaddingBottom">0dp</item>
         <item name="bslItemClickableTextAppearance">@style/BottomSheetClickableItemTextAppearance</item>
+        <item name="bslItemTitleTextAppearance">@style/BottomSheetTitleTextAppearance</item>
     </style>
 
     <style name="BottomSheetClickableItemTextAppearance"
            parent="BottomSheetLib.ClickableItem.DefaultTextAppearance">
         <item name="android:textColor">#FF00FF</item>
+    </style>
+
+    <style name="BottomSheetTitleTextAppearance"
+           parent="BottomSheetLib.ClickableItem.DefaultTextAppearance">
+        <item name="android:textColor">#00FF00</item>
     </style>
 
 </resources>
