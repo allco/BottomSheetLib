@@ -186,7 +186,39 @@ Custom background
 
 # How to style with style attributes
 
-TBD
+The library exposes some UI parameters as style attributes.
+
+There is a default style named `BottomSheetLib` which tries to follow [Material design](https://material.io) as much as possible.
+However, at your app it can be fully or partially overridden.
+    
+Here how you can do it:
+
+1. A new style inherited from `BottomSheetLib` should be defined.
+
+```xml
+    <style name="MyStyle" parent="BottomSheetLib">
+        <item name="bslPaneBackground">@drawable/custom_bg</item>
+        <item name="bslPanePaddingTop">0dp</item>
+        <item name="bslPanePaddingBottom">0dp</item>
+        <item name="bslItemClickableTextAppearance">?android:textAppearanceMedium</item>
+        ...
+    </style>
+
+```
+
+**For a full list of all the available attributes check [this](https://github.com/allco/BottomSheetLib/blob/master/bottomsheet/src/main/res/values/styles.xml)**
+
+
+2. Then the style needs to be hooked up with `bottomSheetLibStyle` attribute in the App's theme.
+
+```xml
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        ...
+        <item name="bottomSheetLibStyle">@style/BottomSheetLib.MyStyle</item>
+    </style>
+```
+
+Check [an example](https://github.com/allco/BottomSheetLib/blob/master/example/src/main/res/values/styles.xml) in order to see how it could be done.
 
 # How to use
 
