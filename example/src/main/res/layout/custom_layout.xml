@@ -1,12 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    >
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.allco.ui.bottomsheet.example.MainActivity.OneDummyStringViewModel"
+            />
+    </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:context=".MainActivity">
+        tools:context=".MainActivity"
+        >
 
         <TextView
             android:id="@+id/textView"
@@ -14,10 +25,11 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
             android:layout_marginTop="8dp"
-            android:text="Lorem ipsum"
+            android:text="@{viewModel.dummyText}"
             android:textAppearance="@style/TextAppearance.AppCompat.Display2"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            />
 
         <Button
             android:id="@+id/button"
@@ -29,7 +41,8 @@
             android:text="Close"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ratingBar" />
+            app:layout_constraintTop_toBottomOf="@+id/ratingBar"
+            />
 
         <RatingBar
             android:id="@+id/ratingBar"
@@ -40,7 +53,8 @@
             android:numStars="5"
             android:rating="5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView" />
+            app:layout_constraintTop_toBottomOf="@+id/textView"
+            />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

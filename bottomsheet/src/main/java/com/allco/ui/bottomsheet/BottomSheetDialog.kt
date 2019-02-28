@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.view.WindowManager
 import android.widget.FrameLayout
 import androidx.appcompat.view.ContextThemeWrapper
+import androidx.lifecycle.LifecycleOwner
 import com.allco.ui.bottomsheet.databinding.BottomSheetListBinding
 import com.allco.ui.bottomsheet.utils.ObserverBasedAdapter
 import com.allco.ui.bottomsheet.utils.getDrawableCompat
@@ -17,7 +18,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialog
 import kotlin.math.min
 import kotlin.math.roundToInt
 
-class BottomSheetDialog(context: Context) : BottomSheetDialog(
+class BottomSheetDialog(context: Context, private val lifecycleOwner: LifecycleOwner) : BottomSheetDialog(
     ContextThemeWrapper(context, context.getStyleRes(R.attr.bottomSheetLibStyle, R.style.BottomSheetLib))
 ) {
 
@@ -55,7 +56,7 @@ class BottomSheetDialog(context: Context) : BottomSheetDialog(
                         ClickableViewModelImpl(item, this)
                     }
                     is BottomSheetSettings.DividerItem -> DividerViewModelImpl(item)
-                    is BottomSheetSettings.CustomItem -> CustomItemViewModel(item, this)
+                    is BottomSheetSettings.CustomItem -> CustomItemViewModel(item, lifecycleOwner, this)
                     else -> throw IllegalArgumentException("`item` has unknown type")
                 }
             }

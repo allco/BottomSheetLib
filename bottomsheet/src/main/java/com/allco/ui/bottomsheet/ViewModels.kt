@@ -1,8 +1,9 @@
 package com.allco.ui.bottomsheet
 
 import android.content.DialogInterface
-import androidx.databinding.ViewDataBinding
 import android.graphics.drawable.Drawable
+import androidx.databinding.ViewDataBinding
+import androidx.lifecycle.LifecycleOwner
 import com.allco.ui.bottomsheet.utils.ObserverBasedAdapter
 
 interface TitleViewModel {
@@ -33,14 +34,18 @@ class DividerViewModelImpl(data: BottomSheetSettings.DividerItem) : DividerViewM
     override val layout = R.layout.bottom_sheet_list_item_divider
 }
 
-class CustomItemViewModel(private val data: BottomSheetSettings.CustomItem, private val dialog: DialogInterface) :
-    ObserverBasedAdapter.Item {
+class CustomItemViewModel(
+    private val data: BottomSheetSettings.CustomItem,
+    private val lifecycleOwner: LifecycleOwner,
+    private val dialog: DialogInterface
+) : ObserverBasedAdapter.Item {
     override val layout: Int
         get() = data.layoutRes
             ?: throw IllegalStateException("`layout` property is required for 'custom{}' item")
 
     override val binder: ((ViewDataBinding, Int) -> Unit)
         get() = { binding, position ->
+            binding.lifecycleOwner = lifecycleOwner
             data.onBind?.invoke(binding, position, dialog) ?: super.binder
         }
 }

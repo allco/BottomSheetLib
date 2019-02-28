@@ -1,11 +1,13 @@
 package com.allco.ui.bottomsheet.example
 
-import androidx.databinding.DataBindingUtil
 import android.graphics.Color
 import android.os.Bundle
-import androidx.core.content.res.ResourcesCompat
-import androidx.appcompat.app.AppCompatActivity
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.res.ResourcesCompat
+import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import com.allco.ui.bottomsheet.bottomSheet
 import com.allco.ui.bottomsheet.example.databinding.ActivityMainBinding
 import com.allco.ui.bottomsheet.example.databinding.CustomLayoutBinding
@@ -86,6 +88,8 @@ class MainActivity : AppCompatActivity() {
         }.show()
     }
 
+    class OneDummyStringViewModel(val dummyText: LiveData<String>)
+
     @Suppress("UNUSED_PARAMETER")
     fun runExample3(view: View) {
         bottomSheet {
@@ -126,6 +130,10 @@ class MainActivity : AppCompatActivity() {
                         button.setOnClickListener {
                             dialogInterface.dismiss()
                         }
+
+                        // LiveData usage
+                        val dummyText = MutableLiveData<String>().apply { postValue("Lorem Ipsum") }
+                        binding.viewModel = OneDummyStringViewModel(dummyText)
                     }
                 }
             }

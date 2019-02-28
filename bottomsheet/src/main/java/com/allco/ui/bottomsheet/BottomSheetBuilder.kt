@@ -1,6 +1,5 @@
 package com.allco.ui.bottomsheet
 
-import android.app.Activity
 import android.content.Context
 import android.content.DialogInterface
 import android.graphics.drawable.Drawable
@@ -8,15 +7,17 @@ import androidx.annotation.ColorRes
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.annotation.StyleRes
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.LifecycleOwner
 
 /**
  * Creates [BottomSheetBuilder]
  * @param action an configuration action for the [BottomSheetSettings]
  */
-fun Activity.bottomSheet(action: BottomSheetSettings.() -> Unit): BottomSheetBuilder {
-    return BottomSheetBuilder(this, BottomSheetSettings().apply { action() })
+fun AppCompatActivity.bottomSheet(action: BottomSheetSettings.() -> Unit): BottomSheetBuilder {
+    return BottomSheetBuilder(this, this, BottomSheetSettings().apply { action() })
 }
 
 /**
@@ -24,14 +25,18 @@ fun Activity.bottomSheet(action: BottomSheetSettings.() -> Unit): BottomSheetBui
  * @param action an configuration action for the [BottomSheetSettings]
  */
 fun Fragment.bottomSheet(action: BottomSheetSettings.() -> Unit): BottomSheetBuilder {
-    return BottomSheetBuilder(this.context!!, BottomSheetSettings().apply { action() })
+    return BottomSheetBuilder(this.context!!, this, BottomSheetSettings().apply { action() })
 }
 
 /** Represents the configured BottomSheet  */
-class BottomSheetBuilder internal constructor(private val context: Context, private var settings: BottomSheetSettings) {
+class BottomSheetBuilder internal constructor(
+    private val context: Context,
+    private val lifecycleOwner: LifecycleOwner,
+    private var settings: BottomSheetSettings
+) {
     /** Actually shows the BottomSheet */
     fun show(): DialogInterface {
-        return BottomSheetDialog(context).apply {
+        return BottomSheetDialog(context, lifecycleOwner).apply {
             init(settings)
             show()
         }
